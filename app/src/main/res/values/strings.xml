@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">GitAwesome</string>
     <string name="photo1">Developer Planning</string>
+    <string name="landingText">GitAwesome</string>
 </resources>
