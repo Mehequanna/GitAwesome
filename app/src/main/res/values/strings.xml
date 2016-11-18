@@ -4,4 +4,6 @@
     <string name="landingText">GitAwesome</string>
     <string name="loginButton">GitAwesome Login</string>
     <string name="searchButton">Search GitHub and Meetups</string>
+    <string name="searchLanguage">Enter Coding Language</string>
+    <string name="searchZip">Enter Zip Code</string>
 </resources>
