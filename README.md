@@ -24,6 +24,7 @@ Android Studio, Java, Github API, Meetup API, Firebase, Gradle, Robolectric, Esp
 * Enter the Git Repo details: https://github.com/Mehequanna/GitAwesome
 * Check everything by clicking "Test"
 * Then click "clone"
+* Follow the prompts. Note: There may need to be some refactoring on your end based on your version of Android Studio.
 
 ##Known Issues
 
