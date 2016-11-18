@@ -2,4 +2,6 @@
     <string name="app_name">GitAwesome</string>
     <string name="photo1">Developer Planning</string>
     <string name="landingText">GitAwesome</string>
+    <string name="loginButton">GitAwesome Login</string>
+    <string name="searchButton">Search GitHub and Meetups</string>
 </resources>
