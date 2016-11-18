@@ -9,6 +9,7 @@
     <color name="colorIcons">#FFFFFF</color>
     <color name="colorDivider">#BDBDBD</color>
     <color name="colorLightBackground">#55BBDEFB</color>
+    <color name="colorDarkBackground">#551976D2</color>
     <color name="black_overlay">#66000000</color>
 
 </resources>
