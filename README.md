@@ -16,6 +16,7 @@ Android Studio, Java, Github API, Meetup API, Firebase, Gradle, Robolectric, Esp
 * Implement GitHub and Meetup APIs
 * Implement user accounts with Firebase
 * Use Firebase to store user details
+* Make theme change by day or night
 
 ##Usage
 * Open Android Studio
