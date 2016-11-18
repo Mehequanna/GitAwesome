@@ -1,4 +1,4 @@
-## Project Name
+##Project Name
 GitAwesome
 
 ##Description
@@ -17,7 +17,7 @@ Android Studio, Java, Github API, Meetup API, Firebase, Gradle, Robolectric, Esp
 * Implement user accounts with Firebase
 * Use Firebase to store user details
 
-## Usage
+##Usage
 * Open Android Studio
 * Click on "Check out project from Version Control"
 * In the popup that appears, click on Git
@@ -27,7 +27,7 @@ Android Studio, Java, Github API, Meetup API, Firebase, Gradle, Robolectric, Esp
 
 ##Known Issues
 
-## Author
+##Author
 Stephen Emery
 
 ##License
