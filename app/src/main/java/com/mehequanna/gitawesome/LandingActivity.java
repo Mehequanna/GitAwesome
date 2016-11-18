@@ -31,9 +31,9 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         if (v == mLoginButton) {
-            Log.i(TAG, "Login Button Clicked");
+            Log.i(TAG, "Login button Clicked");
         } else if (v == mSearchButton) {
-            Log.i(TAG, "Search Button Clicked");
+            Log.i(TAG, "Search button Clicked");
         }
     }
 }
