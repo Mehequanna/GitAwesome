@@ -1,11 +1,13 @@
 package com.mehequanna.gitawesome;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -31,9 +33,10 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         if (v == mLoginButton) {
-            Log.i(TAG, "Login button Clicked");
+            Intent intent = new Intent(LandingActivity.this, LoginActivity.class);
+            startActivity(intent);
         } else if (v == mSearchButton) {
-            Log.i(TAG, "Search button Clicked");
+            Toast.makeText(LandingActivity.this, "Search Function Coming Soon!", Toast.LENGTH_LONG).show();
         }
     }
 }
