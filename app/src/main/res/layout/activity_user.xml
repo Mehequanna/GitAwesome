@@ -4,10 +4,6 @@
     android:id="@+id/activity_user"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.mehequanna.gitawesome.UserActivity">
 
     <TextView
@@ -17,5 +13,5 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="59dp"
-        android:id="@+id/UserTextView" />
+        android:id="@+id/userTextView" />
 </RelativeLayout>
