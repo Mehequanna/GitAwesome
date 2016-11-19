@@ -6,4 +6,8 @@
     <string name="searchButton">Search GitHub and Meetups</string>
     <string name="searchLanguage">Enter Coding Language</string>
     <string name="searchZip">Enter Zip Code</string>
+    <string name="loginPassword">Password</string>
+    <string name="loginUsername">Username</string>
+    <string name="loginHeader">Log In to GitAwesome!</string>
+    <string name="signInButton">Sign In</string>
 </resources>
