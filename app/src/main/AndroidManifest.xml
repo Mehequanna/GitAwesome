@@ -5,8 +5,8 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/appicon"
-        android:supportsRtl="true"
         android:label="@string/app_name"
+        android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".LandingActivity"
@@ -17,11 +17,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"
-                  android:label="">
+        <activity
+            android:name=".LoginActivity"
+            android:label="">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mehequanna.gitawesome.LandingActivity" />
+        </activity>
+        <activity android:name=".UserActivity">
             <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.mehequanna.gitawesome.LandingActivity" /></activity>
+            android:value="com.mehequanna.gitawesome.LandingActivity" />
+        </activity>
     </application>
 
 </manifest>
