@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="23dp"
-        android:id="@+id/button"
+        android:id="@+id/signInButton"
         android:layout_below="@+id/passwordEditText"
         android:layout_centerHorizontal="true" />
 
@@ -55,7 +55,7 @@
         android:textAlignment="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button"
+        android:layout_below="@+id/signInButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:visibility="invisible"
