@@ -24,7 +24,7 @@
         android:hint="@string/loginPassword"
         android:id="@+id/passwordEditText"
         android:layout_marginTop="58dp"
-        android:layout_alignTop="@+id/editText2"
+        android:layout_alignTop="@+id/loginEditText"
         android:layout_centerHorizontal="true" />
 
     <EditText
@@ -33,7 +33,7 @@
         android:inputType="textPersonName"
         android:hint="@string/loginUsername"
         android:ems="10"
-        android:id="@+id/editText2"
+        android:id="@+id/loginEditText"
         android:layout_marginTop="228dp"
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/passwordEditText"
@@ -44,8 +44,20 @@
         android:textSize="36sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2"
+        android:id="@+id/loginTextView"
         android:layout_marginBottom="77dp"
         android:layout_above="@+id/passwordEditText"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="@string/hiddenText"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:visibility="invisible"
+        android:id="@+id/hiddenTextView" />
 </RelativeLayout>

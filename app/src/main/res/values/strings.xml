@@ -10,4 +10,5 @@
     <string name="loginUsername">Username</string>
     <string name="loginHeader">Log In to GitAwesome!</string>
     <string name="signInButton">Sign In</string>
+    <string name="hiddenText">Username and password are:\n \"User\" and \"Password\"</string>
 </resources>
