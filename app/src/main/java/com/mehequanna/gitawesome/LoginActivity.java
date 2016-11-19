@@ -36,13 +36,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (v == mSignInButton) {
             if (TextUtils.isEmpty(mPasswordEditText.getText().toString().trim()) && TextUtils.isEmpty(mLogInEditText.getText().toString().trim())) {
                 Toast.makeText(LoginActivity.this, "Please enter a username and password", Toast.LENGTH_SHORT).show();
-                mHiddenTextView.setVisibility(v.VISIBLE);
             } else if (TextUtils.isEmpty(mPasswordEditText.getText().toString().trim())) {
                 Toast.makeText(LoginActivity.this, "Please enter a password", Toast.LENGTH_SHORT).show();
-                mHiddenTextView.setVisibility(v.VISIBLE);
             } else if (TextUtils.isEmpty(mLogInEditText.getText().toString().trim())) {
                 Toast.makeText(LoginActivity.this, "Please enter a username", Toast.LENGTH_SHORT).show();
-                mHiddenTextView.setVisibility(v.VISIBLE);
             } else if (mPasswordEditText.getText().toString().trim().equals("password") && mLogInEditText.getText().toString().trim().equals("user")) {
                 String username = mLogInEditText.getText().toString().trim();
                 Intent intent = new Intent(LoginActivity.this, UserActivity.class);
@@ -51,6 +48,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             } else if (!(mPasswordEditText.getText().toString().trim().equals("password") && mLogInEditText.getText().toString().trim().equals("user"))) {
                 Toast.makeText(LoginActivity.this, "Incorrect Login", Toast.LENGTH_SHORT).show();
             }
+                mHiddenTextView.setVisibility(v.VISIBLE);
         }
     }
 }
