@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.mehequanna.gitawesome.LoginActivity">
 
-
     <Button
         android:text="@string/signInButton"
         android:layout_width="wrap_content"
@@ -14,17 +13,6 @@
         android:layout_marginTop="23dp"
         android:id="@+id/signInButton"
         android:layout_below="@+id/passwordEditText"
-        android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:hint="@string/loginPassword"
-        android:id="@+id/passwordEditText"
-        android:layout_marginTop="58dp"
-        android:layout_alignTop="@+id/loginEditText"
         android:layout_centerHorizontal="true" />
 
     <EditText
@@ -38,6 +26,18 @@
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/passwordEditText"
         android:layout_alignStart="@+id/passwordEditText" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:hint="@string/loginPassword"
+        android:id="@+id/passwordEditText"
+        android:layout_marginTop="58dp"
+        android:layout_alignTop="@+id/loginEditText"
+        android:layout_centerHorizontal="true" />
+
 
     <TextView
         android:text="@string/loginHeader"
