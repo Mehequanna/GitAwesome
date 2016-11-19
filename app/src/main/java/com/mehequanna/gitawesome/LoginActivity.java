@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+        // This code checks that they user has filled all fields and used the correct login credentials.
         if (v == mSignInButton) {
             if (TextUtils.isEmpty(mPasswordEditText.getText().toString().trim()) && TextUtils.isEmpty(mLogInEditText.getText().toString().trim())) {
                 Toast.makeText(LoginActivity.this, "Please enter a username and password", Toast.LENGTH_SHORT).show();
