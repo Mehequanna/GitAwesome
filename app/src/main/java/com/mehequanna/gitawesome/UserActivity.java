@@ -3,10 +3,13 @@ package com.mehequanna.gitawesome;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,11 +29,20 @@ public class UserActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        String username = "Current User: \n" + intent.getStringExtra("username");
+        String username = "Current User:\n" + intent.getStringExtra("username");
 
         mUserTextView.setText(username);
 
         ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, languagesList);
         mLanguagesListView.setAdapter(adapter);
+
+        // This code will move the user to a page that lists Github Repos by selected language.
+        mLanguagesListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String language = ((TextView)view).getText().toString();
+                Toast.makeText(UserActivity.this, language, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
