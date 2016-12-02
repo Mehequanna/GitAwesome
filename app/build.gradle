@@ -22,6 +22,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildTypes.each {
+        it.buildConfigField 'String', 'GIT_CLIENT_ID', GIT_CLIENT_ID
+        it.buildConfigField 'String', 'GIT_CLIENT_SECRET', GIT_CLIENT_SECRET
+    }
 }
 
 dependencies {
