@@ -1,4 +1,4 @@
-package com.mehequanna.gitawesome;
+package com.mehequanna.gitawesome.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.mehequanna.gitawesome.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

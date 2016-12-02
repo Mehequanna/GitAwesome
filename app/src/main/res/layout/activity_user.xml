@@ -5,7 +5,7 @@
     android:id="@+id/activity_user"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mehequanna.gitawesome.UserActivity">
+    tools:context="com.mehequanna.gitawesome.ui.UserActivity">
 
     <TextView
         android:text="@string/userPlaceholder"
