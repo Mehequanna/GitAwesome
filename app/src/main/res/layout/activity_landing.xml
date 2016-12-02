@@ -4,7 +4,7 @@
     android:id="@+id/activity_landing"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mehequanna.gitawesome.LandingActivity">
+    tools:context="com.mehequanna.gitawesome.ui.LandingActivity">
 
     <ImageView
         android:layout_width="match_parent"

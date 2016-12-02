@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LandingActivity"
+            android:name=".ui.LandingActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,16 +18,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.LoginActivity"
             android:label="">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mehequanna.gitawesome.LandingActivity" />
+                android:value="com.mehequanna.gitawesome.ui.LandingActivity" />
         </activity>
-        <activity android:name=".UserActivity">
+        <activity android:name=".ui.UserActivity">
             <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.mehequanna.gitawesome.LandingActivity" />
+            android:value="com.mehequanna.gitawesome.ui.LandingActivity" />
         </activity>
     </application>
 
