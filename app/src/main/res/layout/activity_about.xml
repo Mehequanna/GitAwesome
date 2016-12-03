@@ -39,9 +39,26 @@
         android:textColor="@color/colorPrimaryText"
         android:background="#afff"
         android:id="@+id/aboutTextView"
-        android:layout_marginTop="76dp"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="105dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/aboutLinkText"
+        android:id="@+id/websiteTextView"
+        android:drawableLeft="@drawable/ic_android_black_24dp"
+        android:drawablePadding="4dp"
+        android:background="#afff"
+        android:padding="10dp"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="62dp"
+        android:layout_below="@+id/aboutTextView"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

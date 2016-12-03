@@ -19,4 +19,5 @@
     <string name="profileImage">Profile Picture</string>
     <string name="errorMessage">Sorry, there are no repositories using that language.</string>
     <string name="aboutText">GitAwesome is a little app I wrote while at Epicodus. This app will hopefully help you use GitHub and Meetup.com to become a better programmer. Enjoy!</string>
+    <string name="aboutLinkText">View GitHub Repo!</string>
 </resources>
