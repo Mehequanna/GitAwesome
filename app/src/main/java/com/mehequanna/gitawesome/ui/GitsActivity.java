@@ -3,10 +3,13 @@ package com.mehequanna.gitawesome.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.TextView;
 
 import com.mehequanna.gitawesome.R;
+import com.mehequanna.gitawesome.adapters.GitsListAdapter;
 import com.mehequanna.gitawesome.models.Repo;
 import com.mehequanna.gitawesome.services.GitService;
 
@@ -20,7 +23,9 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class GitsActivity extends AppCompatActivity {
-    @Bind(R.id.textView2) TextView mTextView;
+    @Bind(R.id.gitsRecyclerView) RecyclerView mRecyclerView;
+    private GitsListAdapter mAdapter;
+
     public ArrayList<Repo> mRepos = new ArrayList<>();
 
     @Override
@@ -33,7 +38,6 @@ public class GitsActivity extends AppCompatActivity {
         String language = intent.getStringExtra("language");
 
         getRepos(language);
-        mTextView.setText(language);
     }
 
     private void getRepos(String language) {
@@ -48,6 +52,19 @@ public class GitsActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 mRepos = gitService.processResults(response);
+
+                GitsActivity.this.runOnUiThread(new Runnable(){
+
+                    @Override
+                    public void run() {
+                        mAdapter = new GitsListAdapter(getApplicationContext(), mRepos);
+                        mRecyclerView.setAdapter(mAdapter);
+                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(GitsActivity.this);
+                        mRecyclerView.setLayoutManager(layoutManager);
+                        mRecyclerView.setHasFixedSize(true);
+
+                    }
+                });
 
             }
         });
