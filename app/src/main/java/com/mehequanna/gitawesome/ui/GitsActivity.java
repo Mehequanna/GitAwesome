@@ -66,7 +66,7 @@ public class GitsActivity extends AppCompatActivity {
                             mRecyclerView.setLayoutManager(layoutManager);
                             mRecyclerView.setHasFixedSize(true);
                         } else {
-                            mErrorTextView.setText(R.string.errormMessage);
+                            mErrorTextView.setText(R.string.errorMessage);
                         }
 
                     }

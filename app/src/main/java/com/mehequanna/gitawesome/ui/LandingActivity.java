@@ -54,7 +54,8 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent);
             }
         } else if (v == mAboutButton) {
-            Toast.makeText(LandingActivity.this, "About Page Coming Soon!", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(LandingActivity.this, AboutActivity.class);
+            startActivity(intent);
         }
     }
 }

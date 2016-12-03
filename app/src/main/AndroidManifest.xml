@@ -36,6 +36,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mehequanna.gitawesome.ui.LandingActivity" />
         </activity>
+        <activity android:name=".ui.AboutActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
     </application>
 
 </manifest>
