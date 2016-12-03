@@ -7,9 +7,11 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.mehequanna.gitawesome.R;
+import com.mehequanna.gitawesome.models.Repo;
 import com.mehequanna.gitawesome.services.GitService;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -19,6 +21,7 @@ import okhttp3.Response;
 
 public class GitsActivity extends AppCompatActivity {
     @Bind(R.id.textView2) TextView mTextView;
+    public ArrayList<Repo> mRepos = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +38,7 @@ public class GitsActivity extends AppCompatActivity {
 
     private void getRepos(String language) {
         final GitService gitService = new GitService();
-        gitService.findRepos(language, new Callback() {
+        gitService.findLanguageRepos(language, new Callback() {
 
             @Override
             public void onFailure(Call call, IOException e) {
@@ -44,12 +47,8 @@ public class GitsActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    String jsonData = response.body().string();
-                    Log.v("log", jsonData);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                mRepos = gitService.processResults(response);
+
             }
         });
     }
