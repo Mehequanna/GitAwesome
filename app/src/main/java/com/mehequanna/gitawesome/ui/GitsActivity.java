@@ -24,6 +24,7 @@ import okhttp3.Response;
 
 public class GitsActivity extends AppCompatActivity {
     @Bind(R.id.gitsRecyclerView) RecyclerView mRecyclerView;
+    @Bind(R.id.errorTextView) TextView mErrorTextView;
     private GitsListAdapter mAdapter;
 
     public ArrayList<Repo> mRepos = new ArrayList<>();
@@ -57,11 +58,16 @@ public class GitsActivity extends AppCompatActivity {
 
                     @Override
                     public void run() {
-                        mAdapter = new GitsListAdapter(getApplicationContext(), mRepos);
-                        mRecyclerView.setAdapter(mAdapter);
-                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(GitsActivity.this);
-                        mRecyclerView.setLayoutManager(layoutManager);
-                        mRecyclerView.setHasFixedSize(true);
+                        // This code show an error message if there are no repos for the recycler view to show.
+                        if (mRepos.size() > 0) {
+                            mAdapter = new GitsListAdapter(getApplicationContext(), mRepos);
+                            mRecyclerView.setAdapter(mAdapter);
+                            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(GitsActivity.this);
+                            mRecyclerView.setLayoutManager(layoutManager);
+                            mRecyclerView.setHasFixedSize(true);
+                        } else {
+                            mErrorTextView.setText(R.string.errormMessage);
+                        }
 
                     }
                 });

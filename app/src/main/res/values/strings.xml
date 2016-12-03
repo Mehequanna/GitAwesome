@@ -17,4 +17,5 @@
     <string name="locationPlaceholder">Location</string>
     <string name="saved">Saved Languages</string>
     <string name="profileImage">Profile Picture</string>
+    <string name="errormMessage">Sorry, there are no repositories using that language.</string>
 </resources>
