@@ -2,8 +2,10 @@
     <string name="app_name">GitAwesome</string>
     <string name="photo1">Developer Planning</string>
     <string name="landingText">GitAwesome</string>
-    <string name="loginButton">GitAwesome Login</string>
-    <string name="searchButton">Search GitHub and Meetups</string>
+    <string name="loginButton">Login</string>
+    <string name="aboutButton">About</string>
+    <string name="searchGitButton">Search Git</string>
+    <string name="searchMeetupButton">Search MeetUps</string>
     <string name="searchLanguage">Enter Coding Language</string>
     <string name="searchZip">Enter Zip Code</string>
     <string name="loginPassword">Password</string>
