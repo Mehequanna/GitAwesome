@@ -31,7 +31,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mehequanna.gitawesome.ui.LandingActivity" />
         </activity>
-        <activity android:name=".ui.GitsActivity"></activity>
+        <activity android:name=".ui.GitsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mehequanna.gitawesome.ui.LandingActivity" />
+        </activity>
     </application>
 
 </manifest>
