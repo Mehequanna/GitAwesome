@@ -49,34 +49,24 @@ public class GitService {
 
         try {
             String jsonData = response.body().string();
-            Log.d("log", "jsondata" + response.body().string());
             if (response.isSuccessful()) {
                 JSONObject gitJSON = new JSONObject(jsonData);
                 JSONArray languageJSON = gitJSON.getJSONArray("items");
 
+                for (int i= 0; i < languageJSON.length(); i++) {
+                    JSONObject languageResults = languageJSON.getJSONObject(i);
 
-                JSONObject languageResults = languageJSON.getJSONObject(0);
+                    String name = languageResults.getString("name");
+                    String description = languageResults.getString("description");
+                    String avatar = languageResults.getJSONObject("owner").getString("avatar_url");
+                    String html = languageResults.getJSONObject("owner").getString("html_url");
+                    String stargazers = languageResults.getString("stargazers_count");
+                    String created = languageResults.getString("created_at");
+                    String updated = languageResults.getString("updated_at");
 
-                String name = languageResults.getString("name");
-                Log.d("log", "Name: " + name);
-
-                String description = languageResults.getString("description");
-                Log.d("log", "Description: " + description);
-
-                String avatar = languageResults.getJSONObject("owner").getString("avatar_url");
-                Log.d("log", "Avatar: " + avatar);
-
-                String html = languageResults.getJSONObject("owner").getString("html_url");
-                Log.d("log", "Website: " + html);
-
-                String stargazers = languageResults.getString("stargazers_count");
-                Log.d("log", "Stargazers: " + stargazers);
-
-                String created = languageResults.getString("created_at");
-                Log.d("log", "Created: " + created);
-
-                String updated = languageResults.getString("updated_at");
-                Log.d("log", "Updated: " + updated);
+                    Repo repo = new Repo(name, description, avatar, html, stargazers, created, updated);
+                    languageRepos.add(repo);
+                }
             }
 
         } catch (IOException e) {
