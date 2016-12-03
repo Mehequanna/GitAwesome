@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.mehequanna.gitawesome.R;
 import com.mehequanna.gitawesome.models.Repo;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -62,6 +63,7 @@ public class GitsListAdapter extends RecyclerView.Adapter<GitsListAdapter.GitsVi
         }
 
         public void bindGits(Repo repo) {
+            Picasso.with(mContext).load(repo.getAvatar()).resize(100,100).into(mReposImageView);
             mRepoNameTextView.setText(repo.getName());
             mRepoCreatedTextView.setText("Created: " + repo.getCreatedAt());
             mRepoUpdatedTextView.setText("Created: " + repo.getUpdatedAt());
