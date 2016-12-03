@@ -24,8 +24,7 @@ android {
     }
 
     buildTypes.each {
-        it.buildConfigField 'String', 'GIT_CLIENT_ID', GIT_CLIENT_ID
-        it.buildConfigField 'String', 'GIT_CLIENT_SECRET', GIT_CLIENT_SECRET
+        it.buildConfigField 'String', 'GIT_API_KEY', GIT_API_KEY
     }
 }
 

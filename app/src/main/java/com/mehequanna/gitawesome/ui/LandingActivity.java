@@ -21,8 +21,6 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
     @Bind(R.id.aboutButton) Button mAboutButton;
     @Bind(R.id.languageEditText) EditText mLanguageEditText;
     @Bind(R.id.zipEditText) EditText mZipEditText;
-    public static final String TAG = "log";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
