@@ -59,7 +59,7 @@ public class GitService {
                     String name = languageResults.getString("name");
                     String description = languageResults.getString("description");
                     String avatar = languageResults.getJSONObject("owner").getString("avatar_url");
-                    String html = languageResults.getJSONObject("owner").getString("html_url");
+                    String html = languageResults.getString("html_url");
                     String stargazers = languageResults.getString("stargazers_count");
                     String created = languageResults.getString("created_at");
                     String updated = languageResults.getString("updated_at");

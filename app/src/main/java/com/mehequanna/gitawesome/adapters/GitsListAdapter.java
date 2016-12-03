@@ -1,12 +1,16 @@
 package com.mehequanna.gitawesome.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mehequanna.gitawesome.R;
 import com.mehequanna.gitawesome.models.Repo;
@@ -47,7 +51,7 @@ public class GitsListAdapter extends RecyclerView.Adapter<GitsListAdapter.GitsVi
         return mRepos.size();
     }
 
-    public class GitsViewHolder extends RecyclerView.ViewHolder {
+    public class GitsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @Bind(R.id.reposImageView) ImageView mReposImageView;
         @Bind(R.id.repoNameTextView) TextView mRepoNameTextView;
         @Bind(R.id.repoCreatedTextView) TextView mRepoCreatedTextView;
@@ -60,6 +64,7 @@ public class GitsListAdapter extends RecyclerView.Adapter<GitsListAdapter.GitsVi
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+            itemView.setOnClickListener(this);
         }
 
         public void bindGits(Repo repo) {
@@ -68,6 +73,16 @@ public class GitsListAdapter extends RecyclerView.Adapter<GitsListAdapter.GitsVi
             mRepoCreatedTextView.setText("Created: " + repo.getCreatedAt());
             mRepoUpdatedTextView.setText("Created: " + repo.getUpdatedAt());
             mRepoStarsTextView.setText("Stars: " + repo.getStargazers());
+        }
+
+        @Override
+        public void onClick(View v) {
+            Log.d("click listener", "working!");
+            int itemPosition = getLayoutPosition();
+//            Toast.makeText(mContext, mRepos.get(itemPosition).getName(), Toast.LENGTH_SHORT).show();
+                Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(mRepos.get(itemPosition).getWebsite()));
+                mContext.startActivity(webIntent);
         }
     }
 }
