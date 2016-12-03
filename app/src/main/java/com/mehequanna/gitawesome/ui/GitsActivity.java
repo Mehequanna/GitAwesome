@@ -20,7 +20,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class GitsActivity extends AppCompatActivity {
-    @Bind(R.id.textView2) TextView mTextView;
+//    @Bind(R.id.textView2) TextView mTextView;
     public ArrayList<Repo> mRepos = new ArrayList<>();
 
     @Override
@@ -33,7 +33,6 @@ public class GitsActivity extends AppCompatActivity {
         String language = intent.getStringExtra("language");
 
         getRepos(language);
-        mTextView.setText(language);
     }
 
     private void getRepos(String language) {

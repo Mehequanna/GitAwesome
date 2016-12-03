@@ -50,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Stars"
-                android:id="@+id/ratingTextView"
+                android:id="@+id/repoStarsTextView"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
