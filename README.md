@@ -4,6 +4,8 @@ GitAwesome
 ##Description
 This Android app will allow users to search the GitHub API for themselves and repositories by language. The user will be able to create a user account and save details like, their zip and favorite languages. They will be able to search for meetups by their zip as well. This is a four day project. So stay tuned through the month of November 2016 for updates.
 
+![screenshot of project](gitawesome.png)
+
 ##Technologies
 Android Studio, Java, Github API, Meetup API, Firebase, Gradle, Robolectric, Espresso
 
