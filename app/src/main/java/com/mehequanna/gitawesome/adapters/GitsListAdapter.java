@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,16 +70,15 @@ public class GitsListAdapter extends RecyclerView.Adapter<GitsListAdapter.GitsVi
         public void bindGits(Repo repo) {
             Picasso.with(mContext).load(repo.getAvatar()).resize(100,100).into(mReposImageView);
             mRepoNameTextView.setText(repo.getName());
-            mRepoCreatedTextView.setText("Created: " + repo.getCreatedAt());
-            mRepoUpdatedTextView.setText("Created: " + repo.getUpdatedAt());
+            mRepoCreatedTextView.setText(repo.getDescription());
+            String createdAt = TextUtils.substring(repo.getCreatedAt(), 0, 10);
+            mRepoUpdatedTextView.setText("Created: " + createdAt);
             mRepoStarsTextView.setText("Stars: " + repo.getStargazers());
         }
 
         @Override
         public void onClick(View v) {
-            Log.d("click listener", "working!");
             int itemPosition = getLayoutPosition();
-//            Toast.makeText(mContext, mRepos.get(itemPosition).getName(), Toast.LENGTH_SHORT).show();
                 Intent webIntent = new Intent(Intent.ACTION_VIEW,
                         Uri.parse(mRepos.get(itemPosition).getWebsite()));
                 mContext.startActivity(webIntent);
