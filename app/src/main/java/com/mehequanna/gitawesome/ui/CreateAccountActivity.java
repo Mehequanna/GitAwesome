@@ -1,5 +1,6 @@
 package com.mehequanna.gitawesome.ui;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -36,6 +37,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
+    private ProgressDialog mAuthProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
         mAuth = FirebaseAuth.getInstance();
         createAuthStateListener();
+        createAuthProgressDialog();
 
         mLoginTextView.setOnClickListener(this);
         mCreateUserButton.setOnClickListener(this);
@@ -92,11 +95,15 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         boolean validUsername = isValidUsername(username);
         boolean validPassword = isValidPassword(password, confirmPassword);
         if(!validEmail || !validName || !validZip || !validUsername || !validPassword) return;
-        
+
+        mAuthProgressDialog.show();
+
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        mAuthProgressDialog.dismiss();
+
                         if (task.isSuccessful()) {
                             Log.d(TAG, "Authentication Successful");
                         } else {
@@ -170,5 +177,12 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
             }
 
         };
+    }
+
+    private void createAuthProgressDialog() {
+        mAuthProgressDialog = new ProgressDialog(this);
+        mAuthProgressDialog.setTitle(getString(R.string.create_dialog));
+        mAuthProgressDialog.setMessage(getString(R.string.create_dialog2));
+        mAuthProgressDialog.setCancelable(false);
     }
 }
