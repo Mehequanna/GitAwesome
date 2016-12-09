@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.mehequanna.gitawesome.R;
 
 import butterknife.Bind;
@@ -33,6 +34,8 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     @Bind(R.id.zipEditText) EditText mZipEditText;
     @Bind(R.id.usernameEditText) EditText mUsernameEditText;
     @Bind(R.id.nameEditText) EditText mNameEditText;
+
+    private String mName;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -82,7 +85,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     }
 
     private void createNewUser() {
-        final String name = mNameEditText.getText().toString().trim();
+        mName = mNameEditText.getText().toString().trim();
         final String email = mEmailEditText.getText().toString().trim();
         String zip = mZipEditText.getText().toString().trim();
         String username = mUsernameEditText.getText().toString().trim();
@@ -90,7 +93,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         String confirmPassword = mConfirmPassword.getText().toString().trim();
 
         boolean validEmail = isValidEmail(email);
-        boolean validName = isValidName(name);
+        boolean validName = isValidName(mName);
         boolean validZip = isValidZip(zip);
         boolean validUsername = isValidUsername(username);
         boolean validPassword = isValidPassword(password, confirmPassword);
@@ -105,6 +108,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
                         mAuthProgressDialog.dismiss();
 
                         if (task.isSuccessful()) {
+                            createFirebaseUserProfile(task.getResult().getUser());
                             Log.d(TAG, "Authentication Successful");
                         } else {
                             Toast.makeText(CreateAccountActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
@@ -184,5 +188,24 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         mAuthProgressDialog.setTitle(getString(R.string.create_dialog));
         mAuthProgressDialog.setMessage(getString(R.string.create_dialog2));
         mAuthProgressDialog.setCancelable(false);
+    }
+
+    private void createFirebaseUserProfile(final FirebaseUser user) {
+
+        UserProfileChangeRequest addProfileName = new UserProfileChangeRequest.Builder()
+                .setDisplayName(mName)
+                .build();
+
+        user.updateProfile(addProfileName)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, user.getDisplayName());
+                        }
+                    }
+
+                });
     }
 }
