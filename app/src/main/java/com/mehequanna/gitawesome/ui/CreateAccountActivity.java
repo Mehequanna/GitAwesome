@@ -136,7 +136,8 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         if (zip.equals("")) {
             mZipEditText.setError("Please enter your zip code.");
             return false;
-        } else if (zip.matches("[0-9]+") && zip.length() == 5) {
+        }
+        if (!zip.matches("^\\d{5}(?:[-\\s]\\d{4})?$")) {
             mZipEditText.setError("Please enter a numeric zip code.");
             return false;
         }
@@ -153,8 +154,6 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         }
         return true;
     }
-
-
 
     private void createAuthStateListener() {
         mAuthListener = new FirebaseAuth.AuthStateListener() {
