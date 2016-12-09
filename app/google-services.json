@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1073958482491",
+    "firebase_url": "https://gitawesome.firebaseio.com",
+    "project_id": "gitawesome",
+    "storage_bucket": "gitawesome.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1073958482491:android:a1750a767d3ef2b0",
+        "android_client_info": {
+          "package_name": "com.mehequanna.gitawesome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1073958482491-re2plkbl7h10gqbngooidj43498rhun8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mehequanna.gitawesome",
+            "certificate_hash": "3A35831A0BF507DEDB3D087C9BB7564C59AAA1E1"
+          }
+        },
+        {
+          "client_id": "1073958482491-ikqccdefcegh5fpj8534u4e4ma1f6iqn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPYggGn1VeML95hyKkAv9og0KO5dS_JAg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1073958482491-ikqccdefcegh5fpj8534u4e4ma1f6iqn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
