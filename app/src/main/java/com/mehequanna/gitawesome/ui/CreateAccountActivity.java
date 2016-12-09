@@ -81,8 +81,17 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     private void createNewUser() {
         final String name = mNameEditText.getText().toString().trim();
         final String email = mEmailEditText.getText().toString().trim();
+        String zip = mZipEditText.getText().toString().trim();
+        String username = mUsernameEditText.getText().toString().trim();
         String password = mPasswordEditText.getText().toString().trim();
-        String confrimPassword = mConfirmPassword.getText().toString().trim();
+        String confirmPassword = mConfirmPassword.getText().toString().trim();
+
+        boolean validEmail = isValidEmail(email);
+        boolean validName = isValidName(name);
+        boolean validZip = isValidZip(zip);
+        boolean validUsername = isValidUsername(username);
+        boolean validPassword = isValidPassword(password, confirmPassword);
+        if(!validEmail || !validName || !validZip || !validUsername || !validPassword) return;
         
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -101,7 +110,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         boolean isGoodEmail =
                 (email != null && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches());
         if (!isGoodEmail) {
-            mEmailEditText.setError("Please enter a valid email address");
+            mEmailEditText.setError("Please enter a valid email address.");
             return false;
         }
         return isGoodEmail;
@@ -109,7 +118,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
     private boolean isValidName(String name) {
         if (name.equals("")) {
-            mNameEditText.setError("Please enter your name");
+            mNameEditText.setError("Please enter your name.");
             return false;
         }
         return true;
@@ -117,7 +126,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
     private boolean isValidUsername(String username) {
         if (username.equals("")) {
-            mUsernameEditText.setError("Please enter your github username");
+            mUsernameEditText.setError("Please enter your github username.");
             return false;
         }
         return true;
@@ -125,10 +134,10 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
     private boolean isValidZip(String zip) {
         if (zip.equals("")) {
-            mZipEditText.setError("Please enter your github username");
+            mZipEditText.setError("Please enter your zip code.");
             return false;
         } else if (zip.matches("[0-9]+") && zip.length() == 5) {
-            mZipEditText.setError("Please enter your github username");
+            mZipEditText.setError("Please enter a numeric zip code.");
             return false;
         }
         return true;
