@@ -39,7 +39,11 @@
         <activity
             android:name=".ui.AboutActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity android:name=".ui.CreateAccountActivity"></activity>
+        <activity android:name=".ui.CreateAccountActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mehequanna.gitawesome.ui.LoginActivity" />
+        </activity>
     </application>
 
 </manifest>
