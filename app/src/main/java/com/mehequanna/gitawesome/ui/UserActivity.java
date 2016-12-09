@@ -52,10 +52,11 @@ public class UserActivity extends AppCompatActivity {
             }
         };
 
-        Intent intent = getIntent();
-        String username = "Current User:\n" + intent.getStringExtra("username");
-
-        mUserTextView.setText(username);
+//        Old code that set name, may change this to accept zip or github username.
+//        Intent intent = getIntent();
+//        String username = "Current User:\n" + intent.getStringExtra("username");
+//
+//        mUserTextView.setText(username);
 
         ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, languagesList);
         mLanguagesListView.setAdapter(adapter);

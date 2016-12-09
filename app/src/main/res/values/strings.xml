@@ -13,7 +13,7 @@
     <string name="loginHeader">Log In to GitAwesome!</string>
     <string name="signInButton">Sign In</string>
     <string name="hiddenText">Username and password are:\n \"user\" and \"password\"</string>
-    <string name="userPlaceholder">Username</string>
+    <string name="userPlaceholder">Github Username</string>
     <string name="locationPlaceholder">Location</string>
     <string name="saved">Saved Languages</string>
     <string name="profileImage">Profile Picture</string>
