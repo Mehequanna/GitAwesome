@@ -97,6 +97,56 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
                 });
     }
 
+    private boolean isValidEmail(String email) {
+        boolean isGoodEmail =
+                (email != null && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches());
+        if (!isGoodEmail) {
+            mEmailEditText.setError("Please enter a valid email address");
+            return false;
+        }
+        return isGoodEmail;
+    }
+
+    private boolean isValidName(String name) {
+        if (name.equals("")) {
+            mNameEditText.setError("Please enter your name");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValidUsername(String username) {
+        if (username.equals("")) {
+            mUsernameEditText.setError("Please enter your github username");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValidZip(String zip) {
+        if (zip.equals("")) {
+            mZipEditText.setError("Please enter your github username");
+            return false;
+        } else if (zip.matches("[0-9]+") && zip.length() == 5) {
+            mZipEditText.setError("Please enter your github username");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValidPassword(String password, String confirmPassword) {
+        if (password.length() < 6) {
+            mPasswordEditText.setError("Please create a password containing at least 6 characters");
+            return false;
+        } else if (!password.equals(confirmPassword)) {
+            mPasswordEditText.setError("Passwords do not match");
+            return false;
+        }
+        return true;
+    }
+
+
+
     private void createAuthStateListener() {
         mAuthListener = new FirebaseAuth.AuthStateListener() {
 
