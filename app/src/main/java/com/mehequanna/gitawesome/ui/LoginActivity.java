@@ -20,7 +20,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Bind(R.id.loginEditText) EditText mLogInEditText;
     @Bind(R.id.passwordEditText) EditText mPasswordEditText;
     @Bind(R.id.hiddenTextView) TextView mHiddenTextView;
-    public static final String TAG = "log";
+    @Bind(R.id.registerTextView) TextView mRegisterTextView;
+    public static final String TAG = LoginActivity.class.getSimpleName();;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +30,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         ButterKnife.bind(this);
 
         mSignInButton.setOnClickListener(this);
+        mRegisterTextView.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        // This code checks that they user has filled all fields and used the correct login credentials.
+        if (v == mRegisterTextView) {
+            Intent intent = new Intent(LoginActivity.this, CreateAccountActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+
+        // This code checks that the user has filled all fields and used the correct login credentials.
         if (v == mSignInButton) {
             if (TextUtils.isEmpty(mPasswordEditText.getText().toString().trim()) && TextUtils.isEmpty(mLogInEditText.getText().toString().trim())) {
                 Toast.makeText(LoginActivity.this, "Please enter a username and password", Toast.LENGTH_SHORT).show();

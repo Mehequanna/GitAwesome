@@ -18,7 +18,7 @@
         android:id="@+id/linearLayout">
 
         <EditText
-            android:id="@+id/emailEditText"
+            android:id="@+id/loginEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
@@ -46,7 +46,7 @@
 
 
         <Button
-            android:id="@+id/passwordLoginButton"
+            android:id="@+id/signInButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -77,4 +77,16 @@
         android:textStyle="bold"
         android:layout_above="@+id/linearLayout"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="@string/hiddenText"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:visibility="invisible"
+        android:id="@+id/hiddenTextView" />
+
 </RelativeLayout>
