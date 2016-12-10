@@ -13,11 +13,25 @@
     <string name="loginHeader">Log In to GitAwesome!</string>
     <string name="signInButton">Sign In</string>
     <string name="hiddenText">Username and password are:\n \"user\" and \"password\"</string>
-    <string name="userPlaceholder">Username</string>
+    <string name="userPlaceholder">Github Username</string>
     <string name="locationPlaceholder">Location</string>
     <string name="saved">Saved Languages</string>
     <string name="profileImage">Profile Picture</string>
     <string name="errorMessage">Sorry, there are no repositories using that language.</string>
     <string name="aboutText">GitAwesome is a little app I wrote while at Epicodus. This app will hopefully help you use GitHub and Meetup.com to become a better programmer. Enjoy!</string>
     <string name="aboutLinkText">View GitHub Repo!</string>
+    <string name="alreadyHave">Already have an account? Log in here!</string>
+    <string name="createAccountHeader">Create Account!</string>
+    <string name="signUp">Sign up</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="name">Name</string>
+    <string name="github_username">Github Username</string>
+    <string name="zip_code">Zip Code (For Local Meetups)</string>
+    <string name="no_account">Don\'t have an account? Sign up here!</string>
+    <string name="menu_logout">Logout</string>
+    <string name="create_dialog">Gitting Awesome!</string>
+    <string name="create_dialog2">Authenticating with Firebase...</string>
+    <string name="create_dialog3">Loading your awesome details!</string>
 </resources>

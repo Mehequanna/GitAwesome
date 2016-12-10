@@ -1,8 +1,12 @@
 package com.mehequanna.gitawesome.ui;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,6 +15,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.mehequanna.gitawesome.R;
 
 import butterknife.Bind;
@@ -24,16 +30,33 @@ public class UserActivity extends AppCompatActivity {
     @Bind(R.id.locationTextView) TextView mLocationTextView;
     private String[] languagesList = new String[] {"This list", "Will hold", "The users", "Saved", "Languages"};
 
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
         ButterKnife.bind(this);
 
-        Intent intent = getIntent();
-        String username = "Current User:\n" + intent.getStringExtra("username");
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    getSupportActionBar().setTitle(user.getDisplayName() + " is Awesome!");
+                } else {
+                    getSupportActionBar().setTitle("Who are you?");
+                }
+            }
+        };
 
-        mUserTextView.setText(username);
+//        Old code that set name, may change this to accept zip or github username.
+//        Intent intent = getIntent();
+//        String username = "Current User:\n" + intent.getStringExtra("username");
+//
+//        mUserTextView.setText(username);
 
         ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, languagesList);
         mLanguagesListView.setAdapter(adapter);
@@ -46,5 +69,44 @@ public class UserActivity extends AppCompatActivity {
                 Toast.makeText(UserActivity.this, language, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_user, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_logout) {
+            logout();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void logout() {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(UserActivity.this, LandingActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 }
