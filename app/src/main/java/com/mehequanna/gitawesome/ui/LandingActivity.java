@@ -56,13 +56,24 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
 
         if (v == mSearchGitButton) {
             if (TextUtils.isEmpty(mLanguageEditText.getText().toString().trim())) {
-                Toast.makeText(LandingActivity.this, "Please enter a language.", Toast.LENGTH_LONG).show();
-            } else if (!(TextUtils.isEmpty(mLanguageEditText.getText().toString().trim()))) {
+                Toast.makeText(LandingActivity.this, "Using previously searched language.", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(LandingActivity.this, GitsActivity.class);
+                startActivity(intent);
+            }
+
+            if (!(TextUtils.isEmpty(mLanguageEditText.getText().toString().trim()))) {
+
                 if (!(TextUtils.isEmpty(mZipEditText.getText().toString().trim()))) {
                     Toast.makeText(LandingActivity.this, "No zip needed for git searches.", Toast.LENGTH_SHORT).show();
                 }
+
                 String language = mLanguageEditText.getText().toString().trim();
-                addLanguageToSharedPreferences(language);
+
+                if(!(language).equals("")) {
+                    addLanguageToSharedPreferences(language);
+                }
+
                 Intent intent = new Intent(LandingActivity.this, GitsActivity.class);
                 intent.putExtra("language", language);
                 startActivity(intent);
