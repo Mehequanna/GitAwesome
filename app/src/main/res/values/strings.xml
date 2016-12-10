@@ -34,4 +34,5 @@
     <string name="create_dialog">Gitting Awesome!</string>
     <string name="create_dialog2">Authenticating with Firebase...</string>
     <string name="create_dialog3">Loading your awesome details!</string>
+    <string name="search_language">Search New Language</string>
 </resources>
