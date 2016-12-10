@@ -6,6 +6,7 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,7 +29,7 @@ import com.mehequanna.gitawesome.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class UserActivity extends AppCompatActivity {
+public class UserActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.userTextView) TextView mUserTextView;
     @Bind(R.id.profileImageView) ImageView mProfileImageView;
     @Bind(R.id.locationTextView) TextView mLocationTextView;
@@ -44,6 +45,7 @@ public class UserActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
     private String mUserZip;
     private String mUsername;
 
@@ -52,6 +54,9 @@ public class UserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
         ButterKnife.bind(this);
+
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -72,6 +77,40 @@ public class UserActivity extends AppCompatActivity {
         mUserZip = mSharedPreferences.getString(Constants.PREFERENCES_USER_ZIP_KEY, null);
         Log.d("Shared Pref Zip", mUserZip);
 
+        mSearchGitButton.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == mSearchGitButton) {
+            if (TextUtils.isEmpty(mLanguageEditText.getText().toString().trim())) {
+                Toast.makeText(UserActivity.this, "Using previously searched language.", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(UserActivity.this, GitsActivity.class);
+                startActivity(intent);
+            }
+
+            if (!(TextUtils.isEmpty(mLanguageEditText.getText().toString().trim()))) {
+
+                if (!(TextUtils.isEmpty(mZipEditText.getText().toString().trim()))) {
+                    Toast.makeText(UserActivity.this, "No zip needed for git searches.", Toast.LENGTH_SHORT).show();
+                }
+
+                String language = mLanguageEditText.getText().toString().trim();
+
+                if(!(language).equals("")) {
+                    addLanguageToSharedPreferences(language);
+                }
+
+                Intent intent = new Intent(UserActivity.this, GitsActivity.class);
+                startActivity(intent);
+            }
+        }
+    }
+
+    private void addLanguageToSharedPreferences(String language) {
+        mEditor.putString(Constants.PREFERENCES_USER_LANGUAGE_KEY, language).apply();
     }
 
     @Override
