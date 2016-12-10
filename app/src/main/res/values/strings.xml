@@ -35,4 +35,6 @@
     <string name="create_dialog2">Authenticating with Firebase...</string>
     <string name="create_dialog3">Loading your awesome details!</string>
     <string name="search_language">Search New Language</string>
+    <string name="saved_gits">Saved Gits</string>
+    <string name="saved_meetups">Saved Meetups</string>
 </resources>
