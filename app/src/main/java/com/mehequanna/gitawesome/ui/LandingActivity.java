@@ -30,6 +30,7 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
     private String mUserZip;
     private String mUsername;
     private String mNonUserZip;
+    private String mNonUserLanguage;
 
 
     @Override
@@ -50,6 +51,7 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
         mUsername = mSharedPreferences.getString(Constants.PREFERENCES_USER_USERNAME_KEY, null);
         mUserZip = mSharedPreferences.getString(Constants.PREFERENCES_USER_ZIP_KEY, null);
         mNonUserZip = mSharedPreferences.getString(Constants.PREFERENCES_NONUSER_ZIP_KEY, null);
+        mNonUserLanguage = mSharedPreferences.getString(Constants.PREFERENCES_NONUSER_LANGUAGE_KEY, null);
 
         if (mNonUserZip == null) {
             addZipToSharedPreferences("97201");
@@ -61,6 +63,10 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
 
         if (mUsername == null) {
             addUsernameToSharedPreferences("mehequanna");
+        }
+
+        if (mNonUserLanguage == null) {
+            addLanguageToSharedPreferences("java");
         }
 
     }
