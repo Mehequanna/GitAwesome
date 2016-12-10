@@ -1,9 +1,5 @@
 package com.mehequanna.gitawesome;
 
-/**
- * Created by stephenemery on 12/2/16.
- */
-
 public class Constants {
     public static final String GIT_API_KEY = BuildConfig.GIT_API_KEY;
     public static final String GIT_BASE_URL = "https://api.github.com/users/";
