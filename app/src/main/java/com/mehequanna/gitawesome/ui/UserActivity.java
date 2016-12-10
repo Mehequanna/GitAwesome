@@ -28,18 +28,15 @@ import butterknife.ButterKnife;
 
 public class UserActivity extends AppCompatActivity {
     @Bind(R.id.userTextView) TextView mUserTextView;
-    @Bind(R.id.languagesTextView) TextView mLanguagesTextView;
     @Bind(R.id.profileImageView) ImageView mProfileImageView;
-    @Bind(R.id.languageListView) ListView mLanguagesListView;
     @Bind(R.id.locationTextView) TextView mLocationTextView;
-    private String[] languagesList = new String[] {"This list", "Will hold", "The users", "Saved", "Languages"};
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     private SharedPreferences mSharedPreferences;
-    private String mRecentZip;
-    private String mRecentUsername;
+    private String mUserZip;
+    private String mUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,22 +58,11 @@ public class UserActivity extends AppCompatActivity {
         };
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mRecentUsername = mSharedPreferences.getString(Constants.PREFERENCES_USER_USERNAME_KEY, null);
-        Log.d("Shared Pref Username", mRecentUsername);
-        mRecentZip = mSharedPreferences.getString(Constants.PREFERENCES_USER_ZIP_KEY, null);
-        Log.d("Shared Pref Zip", mRecentZip);
+        mUsername = mSharedPreferences.getString(Constants.PREFERENCES_USER_USERNAME_KEY, null);
+        Log.d("Shared Pref Username", mUsername);
+        mUserZip = mSharedPreferences.getString(Constants.PREFERENCES_USER_ZIP_KEY, null);
+        Log.d("Shared Pref Zip", mUserZip);
 
-        ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, languagesList);
-        mLanguagesListView.setAdapter(adapter);
-
-        // This code will move the user to a page that lists Github Repos by selected language.
-        mLanguagesListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String language = ((TextView)view).getText().toString();
-                Toast.makeText(UserActivity.this, language, Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override
