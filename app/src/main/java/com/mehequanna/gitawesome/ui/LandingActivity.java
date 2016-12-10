@@ -75,7 +75,6 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
                 }
 
                 Intent intent = new Intent(LandingActivity.this, GitsActivity.class);
-                intent.putExtra("language", language);
                 startActivity(intent);
             }
         }
