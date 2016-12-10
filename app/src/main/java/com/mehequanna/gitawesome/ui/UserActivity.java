@@ -1,9 +1,12 @@
 package com.mehequanna.gitawesome.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,6 +20,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.mehequanna.gitawesome.Constants;
 import com.mehequanna.gitawesome.R;
 
 import butterknife.Bind;
@@ -32,6 +36,10 @@ public class UserActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+
+    private SharedPreferences mSharedPreferences;
+    private String mRecentZip;
+    private String mRecentUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +60,11 @@ public class UserActivity extends AppCompatActivity {
             }
         };
 
-//        Old code that set name, may change this to accept zip or github username.
-//        Intent intent = getIntent();
-//        String username = "Current User:\n" + intent.getStringExtra("username");
-//
-//        mUserTextView.setText(username);
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mRecentUsername = mSharedPreferences.getString(Constants.PREFERENCES_USER_USERNAME_KEY, null);
+        Log.d("Shared Pref Username", mRecentUsername);
+        mRecentZip = mSharedPreferences.getString(Constants.PREFERENCES_USER_ZIP_KEY, null);
+        Log.d("Shared Pref Zip", mRecentZip);
 
         ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, languagesList);
         mLanguagesListView.setAdapter(adapter);
