@@ -31,6 +31,7 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
     private String mUsername;
     private String mNonUserZip;
     private String mNonUserLanguage;
+    private String mUserLanguage;
 
 
     @Override
@@ -52,6 +53,7 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
         mUserZip = mSharedPreferences.getString(Constants.PREFERENCES_USER_ZIP_KEY, null);
         mNonUserZip = mSharedPreferences.getString(Constants.PREFERENCES_NONUSER_ZIP_KEY, null);
         mNonUserLanguage = mSharedPreferences.getString(Constants.PREFERENCES_NONUSER_LANGUAGE_KEY, null);
+        mUserLanguage = mSharedPreferences.getString(Constants.PREFERENCES_USER_LANGUAGE_KEY, null);
 
         if (mNonUserZip == null) {
             addZipToSharedPreferences("97201");
@@ -67,6 +69,10 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
 
         if (mNonUserLanguage == null) {
             addLanguageToSharedPreferences("java");
+        }
+
+        if (mUserLanguage == null) {
+            addUserLanguageToSharedPreferences("php");
         }
 
     }
@@ -115,6 +121,10 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
 
     private void addLanguageToSharedPreferences(String language) {
         mEditor.putString(Constants.PREFERENCES_NONUSER_LANGUAGE_KEY, language).apply();
+    }
+
+    private void addUserLanguageToSharedPreferences(String language) {
+        mEditor.putString(Constants.PREFERENCES_USER_LANGUAGE_KEY, language).apply();
     }
 
     private void addZipToSharedPreferences(String zip) {
