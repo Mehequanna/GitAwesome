@@ -12,12 +12,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -78,6 +75,9 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         Log.d("Shared Pref Zip", mUserZip);
 
         mSearchGitButton.setOnClickListener(this);
+        mSearchMeetupButton.setOnClickListener(this);
+        mSavedGithubButton.setOnClickListener(this);
+        mSavedMeetupsButton.setOnClickListener(this);
 
     }
 
@@ -106,6 +106,18 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent = new Intent(UserActivity.this, GitsActivity.class);
                 startActivity(intent);
             }
+        }
+
+        if (v == mSavedGithubButton) {
+            Toast.makeText(UserActivity.this, "Saved Github Search Function Coming Soon!", Toast.LENGTH_LONG).show();
+        }
+
+        if (v == mSavedMeetupsButton) {
+            Toast.makeText(UserActivity.this, "Meetup Search Function Coming Soon!", Toast.LENGTH_LONG).show();
+        }
+
+        if (v == mSearchMeetupButton) {
+            Toast.makeText(UserActivity.this, "Saved Meetup Function Coming Soon!", Toast.LENGTH_LONG).show();
         }
     }
 
