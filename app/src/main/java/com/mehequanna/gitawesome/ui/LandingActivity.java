@@ -27,6 +27,10 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
 
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
+    private String mUserZip;
+    private String mUsername;
+    private String mNonUserZip;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,24 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
         mSearchMeetupButton.setOnClickListener(this);
         mSearchGitButton.setOnClickListener(this);
         mAboutButton.setOnClickListener(this);
+
+        // Presets Shared Preferences to avoid null pointer exceptions
+        mUsername = mSharedPreferences.getString(Constants.PREFERENCES_USER_USERNAME_KEY, null);
+        mUserZip = mSharedPreferences.getString(Constants.PREFERENCES_USER_ZIP_KEY, null);
+        mNonUserZip = mSharedPreferences.getString(Constants.PREFERENCES_NONUSER_ZIP_KEY, null);
+
+        if (mNonUserZip == null) {
+            addZipToSharedPreferences("97201");
+        }
+
+        if (mUserZip == null) {
+            addUserZipToSharedPreferences("97201");
+        }
+
+        if (mUsername == null) {
+            addUsernameToSharedPreferences("mehequanna");
+        }
+
     }
 
     @Override
@@ -89,8 +111,15 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
         mEditor.putString(Constants.PREFERENCES_NONUSER_LANGUAGE_KEY, language).apply();
     }
 
-//    For use when meetup API is added
-//    private void addZipToSharedPreferences(String zip) {
-//        mEditor.putString(Constants.PREFERENCES_NONUSER_ZIP_KEY, zip).apply();
-//    }
+    private void addZipToSharedPreferences(String zip) {
+        mEditor.putString(Constants.PREFERENCES_NONUSER_ZIP_KEY, zip).apply();
+    }
+
+    private void addUserZipToSharedPreferences(String zip) {
+        mEditor.putString(Constants.PREFERENCES_USER_ZIP_KEY, zip).apply();
+    }
+
+    private void addUsernameToSharedPreferences(String username) {
+        mEditor.putString(Constants.PREFERENCES_USER_USERNAME_KEY, username).apply();
+    }
 }
