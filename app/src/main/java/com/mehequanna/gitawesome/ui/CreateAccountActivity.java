@@ -162,7 +162,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
             return false;
         }
         if (!zip.matches("^\\d{5}(?:[-\\s]\\d{4})?$")) {
-            mZipEditText.setError("Please enter a numeric zip code.");
+            mZipEditText.setError("Please enter a valid zip code.");
             return false;
         }
         return true;
