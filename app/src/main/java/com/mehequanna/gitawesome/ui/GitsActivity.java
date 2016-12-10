@@ -1,6 +1,8 @@
 package com.mehequanna.gitawesome.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.mehequanna.gitawesome.Constants;
 import com.mehequanna.gitawesome.R;
 import com.mehequanna.gitawesome.adapters.GitsListAdapter;
 import com.mehequanna.gitawesome.models.Repo;
@@ -27,6 +30,9 @@ public class GitsActivity extends AppCompatActivity {
     @Bind(R.id.errorTextView) TextView mErrorTextView;
     private GitsListAdapter mAdapter;
 
+    private SharedPreferences mSharedPreferences;
+    private String mRecentLanguage;
+
     public ArrayList<Repo> mRepos = new ArrayList<>();
 
     @Override
@@ -38,7 +44,11 @@ public class GitsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String language = intent.getStringExtra("language");
 
-        getRepos(language);
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mRecentLanguage = mSharedPreferences.getString(Constants.PREFERENCES_NONUSER_LANGUAGE_KEY, null);
+        if (mRecentLanguage != null) {
+            getRepos(mRecentLanguage);
+        }
     }
 
     private void getRepos(String language) {
@@ -58,7 +68,7 @@ public class GitsActivity extends AppCompatActivity {
 
                     @Override
                     public void run() {
-                        // This code show an error message if there are no repos for the recycler view to show.
+                        // This code shows an error message if there are no repos for the recycler view to show.
                         if (mRepos.size() > 0) {
                             mAdapter = new GitsListAdapter(getApplicationContext(), mRepos);
                             mRecyclerView.setAdapter(mAdapter);
