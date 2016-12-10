@@ -113,11 +113,11 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         if (v == mSavedMeetupsButton) {
-            Toast.makeText(UserActivity.this, "Meetup Search Function Coming Soon!", Toast.LENGTH_LONG).show();
+            Toast.makeText(UserActivity.this, "Saved Meetup Function Coming Soon!", Toast.LENGTH_LONG).show();
         }
 
         if (v == mSearchMeetupButton) {
-            Toast.makeText(UserActivity.this, "Saved Meetup Function Coming Soon!", Toast.LENGTH_LONG).show();
+            Toast.makeText(UserActivity.this, "Search Meetup Function Coming Soon!", Toast.LENGTH_LONG).show();
         }
     }
 
