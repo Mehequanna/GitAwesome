@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,6 +32,13 @@ public class UserActivity extends AppCompatActivity {
     @Bind(R.id.userTextView) TextView mUserTextView;
     @Bind(R.id.profileImageView) ImageView mProfileImageView;
     @Bind(R.id.locationTextView) TextView mLocationTextView;
+
+    @Bind(R.id.zipEditText) EditText mZipEditText;
+    @Bind(R.id.languageEditText) EditText mLanguageEditText;
+    @Bind(R.id.searchGitButton) Button mSearchGitButton;
+    @Bind(R.id.searchMeetupButton) Button mSearchMeetupButton;
+    @Bind(R.id.savedGithubButton) Button mSavedGithubButton;
+    @Bind(R.id.savedMeetupsButton) Button mSavedMeetupsButton;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
