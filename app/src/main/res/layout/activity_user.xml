@@ -47,19 +47,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
         android:layout_alignLeft="@+id/searchGitButton"
         android:layout_alignStart="@+id/searchGitButton"
         android:layout_alignRight="@+id/searchGitButton"
         android:layout_alignEnd="@+id/searchGitButton" />
-
-    <Button
-        android:text="@string/searchMeetupButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/searchMeetupButton"
-        android:layout_below="@+id/languageEditText"
-        android:layout_alignLeft="@+id/zipEditText"
-        android:layout_alignStart="@+id/zipEditText" />
 
     <Button
         android:text="@string/saved_meetups"
@@ -67,6 +60,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/savedMeetupsButton"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
         android:layout_alignRight="@+id/searchMeetupButton"
         android:layout_alignEnd="@+id/searchMeetupButton"
         android:layout_alignLeft="@+id/searchMeetupButton"
@@ -109,7 +103,20 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/savedGithubButton"
         android:layout_toRightOf="@+id/locationTextView"
-        android:layout_toEndOf="@+id/locationTextView" />
+        android:layout_toEndOf="@+id/locationTextView"
+        android:layout_marginLeft="7dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="15dp"/>
+
+    <Button
+        android:text="@string/searchMeetupButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchMeetupButton"
+        android:layout_alignBaseline="@+id/searchGitButton"
+        android:layout_alignBottom="@+id/searchGitButton"
+        android:layout_alignLeft="@+id/zipEditText"
+        android:layout_alignStart="@+id/zipEditText" />
 
 
 </RelativeLayout>
