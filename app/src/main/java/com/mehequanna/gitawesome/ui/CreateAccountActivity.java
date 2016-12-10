@@ -2,6 +2,8 @@ package com.mehequanna.gitawesome.ui;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.mehequanna.gitawesome.Constants;
 import com.mehequanna.gitawesome.R;
 
 import butterknife.Bind;
@@ -40,6 +43,9 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
+
     private ProgressDialog mAuthProgressDialog;
 
     @Override
@@ -51,6 +57,9 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         mAuth = FirebaseAuth.getInstance();
         createAuthStateListener();
         createAuthProgressDialog();
+
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
 
         mLoginTextView.setOnClickListener(this);
         mCreateUserButton.setOnClickListener(this);
@@ -88,7 +97,11 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         mName = mNameEditText.getText().toString().trim();
         final String email = mEmailEditText.getText().toString().trim();
         String zip = mZipEditText.getText().toString().trim();
+        addUserZipToSharedPreferences(zip);
+
         String username = mUsernameEditText.getText().toString().trim();
+        addUsernameToSharedPreferences(username);
+
         String password = mPasswordEditText.getText().toString().trim();
         String confirmPassword = mConfirmPassword.getText().toString().trim();
 
@@ -207,5 +220,13 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
                     }
 
                 });
+    }
+
+    private void addUserZipToSharedPreferences(String zip) {
+        mEditor.putString(Constants.PREFERENCES_USER_ZIP_KEY, zip).apply();
+    }
+
+    private void addUsernameToSharedPreferences(String username) {
+        mEditor.putString(Constants.PREFERENCES_USER_USERNAME_KEY, username).apply();
     }
 }
