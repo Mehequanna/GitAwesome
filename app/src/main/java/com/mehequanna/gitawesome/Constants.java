@@ -1,9 +1,5 @@
 package com.mehequanna.gitawesome;
 
-/**
- * Created by stephenemery on 12/2/16.
- */
-
 public class Constants {
     public static final String GIT_API_KEY = BuildConfig.GIT_API_KEY;
     public static final String GIT_BASE_URL = "https://api.github.com/users/";
@@ -13,4 +9,9 @@ public class Constants {
     public static final String GIT_REPOS = "/repos";
     public static final String SORT_QUERY_PARAMETER = "sort";
     public static final String ORDER_QUERY_PARAMETER = "order";
+
+    public static final String PREFERENCES_NONUSER_LANGUAGE_KEY = "language";
+    public static final String PREFERENCES_NONUSER_ZIP_KEY = "zip";
+    public static final String PREFERENCES_USER_LANGUAGE_KEY = "userLanguage";
+    public static final String PREFERENCES_USER_ZIP_KEY = "userZip";
 }
