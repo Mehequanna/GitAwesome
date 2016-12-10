@@ -7,25 +7,84 @@
     android:layout_height="match_parent"
     tools:context="com.mehequanna.gitawesome.ui.UserActivity">
 
+    <EditText
+        android:id="@+id/zipEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorSecondaryDarkBackground"
+        android:textColorHint="@color/colorIcons"
+        android:padding="10dp"
+        android:inputType="number"
+        android:hint="@string/searchZip"
+        android:textAlignment="center"
+        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_alignBaseline="@+id/languageEditText"
+        android:layout_alignBottom="@+id/languageEditText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/languageEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="@string/searchLanguage"
+        android:background="@color/colorDarkBackground"
+        android:textColorHint="@color/colorIcons"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:layout_marginRight="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="11dp"
+        android:layout_above="@+id/searchGitButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/savedGithubButton"
+        android:text="@string/saved_gits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_alignLeft="@+id/searchGitButton"
+        android:layout_alignStart="@+id/searchGitButton"
+        android:layout_alignRight="@+id/searchGitButton"
+        android:layout_alignEnd="@+id/searchGitButton" />
+
+    <Button
+        android:text="@string/saved_meetups"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/savedMeetupsButton"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:layout_alignRight="@+id/searchMeetupButton"
+        android:layout_alignEnd="@+id/searchMeetupButton"
+        android:layout_alignLeft="@+id/searchMeetupButton"
+        android:layout_alignStart="@+id/searchMeetupButton" />
+
+    <TextView
+        android:text="@string/locationPlaceholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/locationTextView"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/profileImageView"
+        android:layout_centerHorizontal="true" />
+
     <TextView
         android:text="@string/userPlaceholder"
         android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="74dp"
         android:id="@+id/userTextView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:text="@string/saved"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/languagesTextView"
-        android:layout_above="@+id/languageListView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="7dp" />
 
     <ImageView
         android:layout_width="120dp"
@@ -33,24 +92,31 @@
         app:srcCompat="@drawable/dummyprofile"
         android:contentDescription="@string/profileImage"
         android:id="@+id/profileImageView"
+        android:layout_marginTop="22dp"
         android:layout_below="@+id/userTextView"
         android:layout_centerHorizontal="true" />
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:id="@+id/languageListView"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="@string/locationPlaceholder"
+    <Button
+        android:id="@+id/searchGitButton"
+        android:text="@string/searchGitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/locationTextView"
-        android:layout_below="@+id/profileImageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="6dp" />
+        android:layout_above="@+id/savedGithubButton"
+        android:layout_toRightOf="@+id/locationTextView"
+        android:layout_toEndOf="@+id/locationTextView"
+        android:layout_marginLeft="7dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="15dp"/>
+
+    <Button
+        android:text="@string/searchMeetupButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchMeetupButton"
+        android:layout_alignBaseline="@+id/searchGitButton"
+        android:layout_alignBottom="@+id/searchGitButton"
+        android:layout_alignLeft="@+id/zipEditText"
+        android:layout_alignStart="@+id/zipEditText" />
+
 
 </RelativeLayout>

@@ -6,15 +6,15 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,26 +26,34 @@ import com.mehequanna.gitawesome.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class UserActivity extends AppCompatActivity {
+public class UserActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.userTextView) TextView mUserTextView;
-    @Bind(R.id.languagesTextView) TextView mLanguagesTextView;
     @Bind(R.id.profileImageView) ImageView mProfileImageView;
-    @Bind(R.id.languageListView) ListView mLanguagesListView;
     @Bind(R.id.locationTextView) TextView mLocationTextView;
-    private String[] languagesList = new String[] {"This list", "Will hold", "The users", "Saved", "Languages"};
+
+    @Bind(R.id.zipEditText) EditText mZipEditText;
+    @Bind(R.id.languageEditText) EditText mLanguageEditText;
+    @Bind(R.id.searchGitButton) Button mSearchGitButton;
+    @Bind(R.id.searchMeetupButton) Button mSearchMeetupButton;
+    @Bind(R.id.savedGithubButton) Button mSavedGithubButton;
+    @Bind(R.id.savedMeetupsButton) Button mSavedMeetupsButton;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     private SharedPreferences mSharedPreferences;
-    private String mRecentZip;
-    private String mRecentUsername;
+    private SharedPreferences.Editor mEditor;
+    private String mUserZip;
+    private String mUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
         ButterKnife.bind(this);
+
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -61,22 +69,60 @@ public class UserActivity extends AppCompatActivity {
         };
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mRecentUsername = mSharedPreferences.getString(Constants.PREFERENCES_USER_USERNAME_KEY, null);
-        Log.d("Shared Pref Username", mRecentUsername);
-        mRecentZip = mSharedPreferences.getString(Constants.PREFERENCES_USER_ZIP_KEY, null);
-        Log.d("Shared Pref Zip", mRecentZip);
+        mUsername = mSharedPreferences.getString(Constants.PREFERENCES_USER_USERNAME_KEY, null);
+        Log.d("Shared Pref Username", mUsername);
+        mUserZip = mSharedPreferences.getString(Constants.PREFERENCES_USER_ZIP_KEY, null);
+        Log.d("Shared Pref Zip", mUserZip);
 
-        ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, languagesList);
-        mLanguagesListView.setAdapter(adapter);
+        mSearchGitButton.setOnClickListener(this);
+        mSearchMeetupButton.setOnClickListener(this);
+        mSavedGithubButton.setOnClickListener(this);
+        mSavedMeetupsButton.setOnClickListener(this);
 
-        // This code will move the user to a page that lists Github Repos by selected language.
-        mLanguagesListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String language = ((TextView)view).getText().toString();
-                Toast.makeText(UserActivity.this, language, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == mSearchGitButton) {
+            if (TextUtils.isEmpty(mLanguageEditText.getText().toString().trim())) {
+                Toast.makeText(UserActivity.this, "Using previously searched language.", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(UserActivity.this, GitsActivity.class);
+                startActivity(intent);
             }
-        });
+
+            if (!(TextUtils.isEmpty(mLanguageEditText.getText().toString().trim()))) {
+
+                if (!(TextUtils.isEmpty(mZipEditText.getText().toString().trim()))) {
+                    Toast.makeText(UserActivity.this, "No zip needed for git searches.", Toast.LENGTH_SHORT).show();
+                }
+
+                String language = mLanguageEditText.getText().toString().trim();
+
+                if(!(language).equals("")) {
+                    addLanguageToSharedPreferences(language);
+                }
+
+                Intent intent = new Intent(UserActivity.this, GitsActivity.class);
+                startActivity(intent);
+            }
+        }
+
+        if (v == mSavedGithubButton) {
+            Toast.makeText(UserActivity.this, "Saved Github Search Function Coming Soon!", Toast.LENGTH_LONG).show();
+        }
+
+        if (v == mSavedMeetupsButton) {
+            Toast.makeText(UserActivity.this, "Saved Meetup Function Coming Soon!", Toast.LENGTH_LONG).show();
+        }
+
+        if (v == mSearchMeetupButton) {
+            Toast.makeText(UserActivity.this, "Search Meetup Function Coming Soon!", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void addLanguageToSharedPreferences(String language) {
+        mEditor.putString(Constants.PREFERENCES_USER_LANGUAGE_KEY, language).apply();
     }
 
     @Override
