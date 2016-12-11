@@ -4,52 +4,61 @@ import org.parceler.Parcel;
 
 @Parcel
 public class Repo {
-    private String mName;
-    private String mDescription;
-    private String mAvatar;
-    private String mWebsite;
-    private String mStargazers;
-    private String mCreatedAt;
-    private String mUpdatedAt;
+    private String name;
+    private String description;
+    private String avatar;
+    private String website;
+    private String stargazers;
+    private String createdAt;
+    private String updatedAt;
+    private String pushId;
 
     public Repo() {}
 
-    public Repo(String mName, String mDescription, String mAvatar, String mWebsite, String mStargazers, String mCreatedAt, String mUpdatedAt) {
-        this.mName = mName;
-        this.mDescription = mDescription;
-        this.mAvatar = mAvatar;
-        this.mWebsite = mWebsite;
-        this.mStargazers = mStargazers;
-        this.mCreatedAt = mCreatedAt;
-        this.mUpdatedAt = mUpdatedAt;
+    public Repo(String name, String description, String avatar, String website, String stargazers, String createdAt, String updatedAt) {
+        this.name = name;
+        this.description = description;
+        this.avatar = avatar;
+        this.website = website;
+        this.stargazers = stargazers;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public String getDescription() {
-        return mDescription;
+        return description;
     }
 
     public String getAvatar() {
-        return mAvatar;
+        return avatar;
     }
 
     public String getWebsite() {
-        return mWebsite;
+        return website;
     }
 
     public String getStargazers() {
-        return mStargazers;
+        return stargazers;
     }
 
     public String getCreatedAt() {
-        return mCreatedAt;
+        return createdAt;
     }
 
     public String getUpdatedAt() {
-        return mUpdatedAt;
+        return updatedAt;
+    }
+
+    public String getPushId() {
+        return pushId;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
     }
 }

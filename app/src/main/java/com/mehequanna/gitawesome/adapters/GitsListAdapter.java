@@ -53,8 +53,8 @@ public class GitsListAdapter extends RecyclerView.Adapter<GitsListAdapter.GitsVi
     public class GitsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @Bind(R.id.reposImageView) ImageView mReposImageView;
         @Bind(R.id.repoNameTextView) TextView mRepoNameTextView;
+        @Bind(R.id.repoDescriptionTextView) TextView mRepoDescriptionTextView;
         @Bind(R.id.repoCreatedTextView) TextView mRepoCreatedTextView;
-        @Bind(R.id.repoUpdatedTextView) TextView mRepoUpdatedTextView;
         @Bind(R.id.repoStarsTextView) TextView mRepoStarsTextView;
 
         private Context mContext;
@@ -69,9 +69,9 @@ public class GitsListAdapter extends RecyclerView.Adapter<GitsListAdapter.GitsVi
         public void bindGits(Repo repo) {
             Picasso.with(mContext).load(repo.getAvatar()).resize(100,100).into(mReposImageView);
             mRepoNameTextView.setText(repo.getName());
-            mRepoCreatedTextView.setText(repo.getDescription());
+            mRepoDescriptionTextView.setText(repo.getDescription());
             String createdAt = TextUtils.substring(repo.getCreatedAt(), 0, 10);
-            mRepoUpdatedTextView.setText("Created: " + createdAt);
+            mRepoCreatedTextView.setText("Created: " + createdAt);
             mRepoStarsTextView.setText("Stars: " + repo.getStargazers());
         }
 

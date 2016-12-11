@@ -4,15 +4,23 @@ package com.mehequanna.gitawesome.ui;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.mehequanna.gitawesome.Constants;
 import com.mehequanna.gitawesome.R;
 import com.mehequanna.gitawesome.models.Repo;
 import com.squareup.picasso.Picasso;
@@ -32,7 +40,12 @@ public class GitsDetailFragment extends Fragment implements View.OnClickListener
     @Bind(R.id.githubTextView) TextView mGithubTextView;
     @Bind(R.id.saveGitButton) Button mSaveGitButton;
 
+//    private FirebaseAuth mAuth;
+//    private FirebaseAuth.AuthStateListener mAuthListener;
+
     private Repo mRepo;
+
+//    private boolean mCurrentUser;
 
     public static GitsDetailFragment newInstance(Repo repo) {
         GitsDetailFragment gitsDetailFragment = new GitsDetailFragment();
@@ -68,6 +81,8 @@ public class GitsDetailFragment extends Fragment implements View.OnClickListener
 
         mGithubTextView.setOnClickListener(this);
 
+        mSaveGitButton.setOnClickListener(this);
+
         return view;
     }
 
@@ -77,6 +92,28 @@ public class GitsDetailFragment extends Fragment implements View.OnClickListener
             Intent webIntent = new Intent(Intent.ACTION_VIEW,
                     Uri.parse(mRepo.getWebsite()));
             startActivity(webIntent);
+        }
+
+        if (v == mSaveGitButton) {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+            if (user != null) {
+                String uid = user.getUid();
+
+                DatabaseReference repoRef = FirebaseDatabase
+                        .getInstance()
+                        .getReference(Constants.FIREBASE_CHILD_REPOS)
+                        .child(uid);
+
+                DatabaseReference pushRef = repoRef.push();
+                String pushId = pushRef.getKey();
+                mRepo.setPushId(pushId);
+                pushRef.setValue(mRepo);
+
+                Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+            } else if (user == null) {
+                Toast.makeText(getContext(), "You must be logged in to do that!", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }
