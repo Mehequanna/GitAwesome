@@ -4,6 +4,7 @@ package com.mehequanna.gitawesome.ui;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -14,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mehequanna.gitawesome.Constants;
@@ -36,7 +39,12 @@ public class GitsDetailFragment extends Fragment implements View.OnClickListener
     @Bind(R.id.githubTextView) TextView mGithubTextView;
     @Bind(R.id.saveGitButton) Button mSaveGitButton;
 
+//    private FirebaseAuth mAuth;
+//    private FirebaseAuth.AuthStateListener mAuthListener;
+
     private Repo mRepo;
+
+//    private boolean mCurrentUser;
 
     public static GitsDetailFragment newInstance(Repo repo) {
         GitsDetailFragment gitsDetailFragment = new GitsDetailFragment();
@@ -87,9 +95,32 @@ public class GitsDetailFragment extends Fragment implements View.OnClickListener
 
         if (v == mSaveGitButton) {
             DatabaseReference repoRef = FirebaseDatabase.getInstance()
-                    .getReference(Constants.FIREBASE_CHILD_REPOS);
-            repoRef.push().setValue(mRepo);
-            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+                        .getReference(Constants.FIREBASE_CHILD_REPOS);
+                repoRef.push().setValue(mRepo);
+                Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+
+
+//            Hopefully this will work later
+//            mAuth = FirebaseAuth.getInstance();
+//            mAuthListener = new FirebaseAuth.AuthStateListener() {
+//                @Override
+//                public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                    FirebaseUser user = firebaseAuth.getCurrentUser();
+//                    if (user != null) {
+//                        mCurrentUser = true;
+//                    } else {
+//                        mCurrentUser = false;
+//                    }
+//                }
+//            };
+//            if (mCurrentUser) {
+//                DatabaseReference repoRef = FirebaseDatabase.getInstance()
+//                        .getReference(Constants.FIREBASE_CHILD_REPOS);
+//                repoRef.push().setValue(mRepo);
+//                Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+//            } else {
+//                Toast.makeText(getContext(), "You must be logged in to do that!", Toast.LENGTH_SHORT).show();
+//            }
         }
     }
 }
