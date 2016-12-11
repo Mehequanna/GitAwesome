@@ -38,8 +38,8 @@ public class FirebaseRepoViewHolder extends RecyclerView.ViewHolder implements V
     public void bindGits(Repo repo) {
         ImageView repoImageView = (ImageView) mView.findViewById(R.id.reposImageView);
         TextView repoNameTextView = (TextView) mView.findViewById(R.id.repoNameTextView);
+        TextView repoDescriptionTextView = (TextView) mView.findViewById(R.id.repoDescriptionTextView);
         TextView repoCreatedTextView = (TextView) mView.findViewById(R.id.repoCreatedTextView);
-        TextView repoUpdatedTextView = (TextView) mView.findViewById(R.id.repoUpdatedTextView);
         TextView repoStarsTextView = (TextView) mView.findViewById(R.id.repoStarsTextView);
 
         Picasso.with(mContext).load(repo.getAvatar())
@@ -47,9 +47,9 @@ public class FirebaseRepoViewHolder extends RecyclerView.ViewHolder implements V
                 .into(repoImageView);
 
         repoNameTextView.setText(repo.getName());
-        repoCreatedTextView.setText(repo.getCreatedAt());
+        repoDescriptionTextView.setText(repo.getDescription());
         String createdAt = TextUtils.substring(repo.getCreatedAt(), 0, 10);
-        repoUpdatedTextView.setText("Created: " + createdAt);
+        repoCreatedTextView.setText("Created: " + createdAt);
         repoStarsTextView.setText("Stars: " + repo.getStargazers());
     }
 
