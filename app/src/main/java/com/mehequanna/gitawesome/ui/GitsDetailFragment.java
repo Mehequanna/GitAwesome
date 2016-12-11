@@ -1,6 +1,8 @@
 package com.mehequanna.gitawesome.ui;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -20,7 +22,7 @@ import org.parceler.Parcels;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class GitsDetailFragment extends Fragment {
+public class GitsDetailFragment extends Fragment implements View.OnClickListener {
     @Bind(R.id.gitsImageView) ImageView mGitsImageView;
     @Bind(R.id.gitsNameTextView) TextView mGitsNameTextView;
     @Bind(R.id.descriptionTextView) TextView mDescriptionTextView;
@@ -64,6 +66,17 @@ public class GitsDetailFragment extends Fragment {
         mStargazersTextView.setText(newStargazers);
         mGithubTextView.setText(mRepo.getWebsite());
 
+        mGithubTextView.setOnClickListener(this);
+
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == mGithubTextView) {
+            Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse(mRepo.getWebsite()));
+            startActivity(webIntent);
+        }
     }
 }
