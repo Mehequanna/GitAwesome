@@ -12,7 +12,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.mehequanna.gitawesome.Constants;
 import com.mehequanna.gitawesome.R;
 import com.mehequanna.gitawesome.models.Repo;
 import com.squareup.picasso.Picasso;
@@ -68,6 +72,8 @@ public class GitsDetailFragment extends Fragment implements View.OnClickListener
 
         mGithubTextView.setOnClickListener(this);
 
+        mSaveGitButton.setOnClickListener(this);
+
         return view;
     }
 
@@ -77,6 +83,13 @@ public class GitsDetailFragment extends Fragment implements View.OnClickListener
             Intent webIntent = new Intent(Intent.ACTION_VIEW,
                     Uri.parse(mRepo.getWebsite()));
             startActivity(webIntent);
+        }
+
+        if (v == mSaveGitButton) {
+            DatabaseReference repoRef = FirebaseDatabase.getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_REPOS);
+            repoRef.push().setValue(mRepo);
+            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
     }
 }
