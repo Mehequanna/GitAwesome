@@ -109,7 +109,8 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         if (v == mSavedGithubButton) {
-            Toast.makeText(UserActivity.this, "Saved Github Search Function Coming Soon!", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(UserActivity.this, SavedRepoListActivity.class);
+            startActivity(intent);
         }
 
         if (v == mSavedMeetupsButton) {
