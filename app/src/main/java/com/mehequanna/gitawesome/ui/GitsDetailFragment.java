@@ -4,7 +4,6 @@ package com.mehequanna.gitawesome.ui;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
@@ -40,12 +39,7 @@ public class GitsDetailFragment extends Fragment implements View.OnClickListener
     @Bind(R.id.githubTextView) TextView mGithubTextView;
     @Bind(R.id.saveGitButton) Button mSaveGitButton;
 
-//    private FirebaseAuth mAuth;
-//    private FirebaseAuth.AuthStateListener mAuthListener;
-
     private Repo mRepo;
-
-//    private boolean mCurrentUser;
 
     public static GitsDetailFragment newInstance(Repo repo) {
         GitsDetailFragment gitsDetailFragment = new GitsDetailFragment();
