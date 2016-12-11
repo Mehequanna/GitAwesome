@@ -14,8 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:id="@+id/gitsImageView"
-            android:src="@drawable/dummyprofile"
-            android:scaleType="centerCrop" />
+            android:src="@drawable/dummyprofile" />
 
         <RelativeLayout
             android:layout_width="match_parent"
