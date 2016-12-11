@@ -1,6 +1,6 @@
 package com.mehequanna.gitawesome.adapters;
 
-import android.app.FragmentManager;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 
