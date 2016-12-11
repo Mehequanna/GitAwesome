@@ -1,9 +1,8 @@
 package com.mehequanna.gitawesome.models;
 
-/**
- * Created by stephenemery on 12/2/16.
- */
+import org.parceler.Parcel;
 
+@Parcel
 public class Repo {
     private String mName;
     private String mDescription;
@@ -13,6 +12,7 @@ public class Repo {
     private String mCreatedAt;
     private String mUpdatedAt;
 
+    public Repo() {}
 
     public Repo(String mName, String mDescription, String mAvatar, String mWebsite, String mStargazers, String mCreatedAt, String mUpdatedAt) {
         this.mName = mName;

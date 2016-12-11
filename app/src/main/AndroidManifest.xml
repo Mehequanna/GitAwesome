@@ -39,7 +39,8 @@
         <activity
             android:name=".ui.AboutActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity android:name=".ui.CreateAccountActivity"/>
+        <activity android:name=".ui.CreateAccountActivity" />
+        <activity android:name=".ui.GitsDetailActivity"></activity>
     </application>
 
 </manifest>
