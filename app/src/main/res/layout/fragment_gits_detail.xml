@@ -13,7 +13,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:id="@+id/restaurantImageView"
+            android:id="@+id/gitsImageView"
             android:src="@drawable/dummyprofile"
             android:scaleType="centerCrop" />
 
@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Git Name"
-                android:id="@+id/restaurantNameTextView"
+                android:id="@+id/gitsNameTextView"
                 android:textSize="30sp"
                 android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold"
@@ -59,7 +59,31 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Description"
-                    android:id="@+id/phoneTextView"
+                    android:id="@+id/descriptionTextView"
+                    android:drawablePadding="4dp"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Created On:"
+                    android:id="@+id/createdTextView"
+                    android:drawablePadding="4dp"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Updated On:"
+                    android:id="@+id/updatedTextView"
                     android:drawablePadding="4dp"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="15sp"
@@ -71,7 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Stargazers"
-                    android:id="@+id/websiteTextView"
+                    android:id="@+id/stargazersTextView"
                     android:drawableLeft="@drawable/ic_stars_black_18dp"
                     android:drawablePadding="4dp"
                     android:textColor="@color/colorPrimaryText"
@@ -87,7 +111,7 @@
                     android:text="View on GitHub"
                     android:drawableLeft="@drawable/ic_link_black_24dp"
                     android:drawablePadding="4dp"
-                    android:id="@+id/addressTextView"
+                    android:id="@+id/githubTextView"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="15sp"
                     android:textStyle="bold"
