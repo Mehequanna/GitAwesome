@@ -96,42 +96,24 @@ public class GitsDetailFragment extends Fragment implements View.OnClickListener
 
         if (v == mSaveGitButton) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            String uid = user.getUid();
 
-            DatabaseReference repoRef = FirebaseDatabase
-                    .getInstance()
-                    .getReference(Constants.FIREBASE_CHILD_REPOS)
-                    .child(uid);
+            if (user != null) {
+                String uid = user.getUid();
 
-            DatabaseReference pushRef = repoRef.push();
-            String pushId = pushRef.getKey();
-            mRepo.setPushId(pushId);
-            pushRef.setValue(mRepo);
+                DatabaseReference repoRef = FirebaseDatabase
+                        .getInstance()
+                        .getReference(Constants.FIREBASE_CHILD_REPOS)
+                        .child(uid);
 
-            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+                DatabaseReference pushRef = repoRef.push();
+                String pushId = pushRef.getKey();
+                mRepo.setPushId(pushId);
+                pushRef.setValue(mRepo);
 
-
-//            Hopefully this will work later
-//            mAuth = FirebaseAuth.getInstance();
-//            mAuthListener = new FirebaseAuth.AuthStateListener() {
-//                @Override
-//                public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-//                    FirebaseUser user = firebaseAuth.getCurrentUser();
-//                    if (user != null) {
-//                        mCurrentUser = true;
-//                    } else {
-//                        mCurrentUser = false;
-//                    }
-//                }
-//            };
-//            if (mCurrentUser) {
-//                DatabaseReference repoRef = FirebaseDatabase.getInstance()
-//                        .getReference(Constants.FIREBASE_CHILD_REPOS);
-//                repoRef.push().setValue(mRepo);
-//                Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
-//            } else {
-//                Toast.makeText(getContext(), "You must be logged in to do that!", Toast.LENGTH_SHORT).show();
-//            }
+                Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+            } else if (user == null) {
+                Toast.makeText(getContext(), "You must be logged in to do that!", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }
