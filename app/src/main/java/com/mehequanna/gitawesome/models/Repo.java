@@ -4,52 +4,52 @@ import org.parceler.Parcel;
 
 @Parcel
 public class Repo {
-    private String mName;
-    private String mDescription;
-    private String mAvatar;
-    private String mWebsite;
-    private String mStargazers;
-    private String mCreatedAt;
-    private String mUpdatedAt;
+    private String Name;
+    private String Description;
+    private String Avatar;
+    private String Website;
+    private String Stargazers;
+    private String CreatedAt;
+    private String UpdatedAt;
 
     public Repo() {}
 
-    public Repo(String mName, String mDescription, String mAvatar, String mWebsite, String mStargazers, String mCreatedAt, String mUpdatedAt) {
-        this.mName = mName;
-        this.mDescription = mDescription;
-        this.mAvatar = mAvatar;
-        this.mWebsite = mWebsite;
-        this.mStargazers = mStargazers;
-        this.mCreatedAt = mCreatedAt;
-        this.mUpdatedAt = mUpdatedAt;
+    public Repo(String Name, String Description, String Avatar, String Website, String Stargazers, String CreatedAt, String UpdatedAt) {
+        this.Name = Name;
+        this.Description = Description;
+        this.Avatar = Avatar;
+        this.Website = Website;
+        this.Stargazers = Stargazers;
+        this.CreatedAt = CreatedAt;
+        this.UpdatedAt = UpdatedAt;
     }
 
 
     public String getName() {
-        return mName;
+        return Name;
     }
 
     public String getDescription() {
-        return mDescription;
+        return Description;
     }
 
     public String getAvatar() {
-        return mAvatar;
+        return Avatar;
     }
 
     public String getWebsite() {
-        return mWebsite;
+        return Website;
     }
 
     public String getStargazers() {
-        return mStargazers;
+        return Stargazers;
     }
 
     public String getCreatedAt() {
-        return mCreatedAt;
+        return CreatedAt;
     }
 
     public String getUpdatedAt() {
-        return mUpdatedAt;
+        return UpdatedAt;
     }
 }
