@@ -11,6 +11,7 @@ public class Repo {
     private String stargazers;
     private String createdAt;
     private String updatedAt;
+    private String pushId;
 
     public Repo() {}
 
@@ -51,5 +52,9 @@ public class Repo {
 
     public String getUpdatedAt() {
         return updatedAt;
+    }
+
+    public String getPushId() {
+        return pushId;
     }
 }
