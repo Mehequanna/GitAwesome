@@ -40,7 +40,8 @@
             android:name=".ui.AboutActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity android:name=".ui.CreateAccountActivity" />
-        <activity android:name=".ui.GitsDetailActivity"></activity>
+        <activity android:name=".ui.GitsDetailActivity" />
+        <activity android:name=".ui.SavedRepoListActivity"></activity>
     </application>
 
 </manifest>
