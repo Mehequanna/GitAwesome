@@ -14,16 +14,15 @@ import android.widget.TextView;
 
 import com.mehequanna.gitawesome.R;
 import com.mehequanna.gitawesome.models.Repo;
+import com.mehequanna.gitawesome.ui.GitsDetailActivity;
 import com.squareup.picasso.Picasso;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-
-/**
- * Created by stephenemery on 12/2/16.
- */
 
 public class GitsListAdapter extends RecyclerView.Adapter<GitsListAdapter.GitsViewHolder> {
     private ArrayList<Repo> mRepos = new ArrayList<>();
@@ -79,9 +78,10 @@ public class GitsListAdapter extends RecyclerView.Adapter<GitsListAdapter.GitsVi
         @Override
         public void onClick(View v) {
             int itemPosition = getLayoutPosition();
-                Intent webIntent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse(mRepos.get(itemPosition).getWebsite()));
-                mContext.startActivity(webIntent);
+            Intent intent = new Intent(mContext, GitsDetailActivity.class);
+            intent.putExtra("position", itemPosition);
+            intent.putExtra("repos", Parcels.wrap(mRepos));
+            mContext.startActivity(intent);
         }
     }
 }
