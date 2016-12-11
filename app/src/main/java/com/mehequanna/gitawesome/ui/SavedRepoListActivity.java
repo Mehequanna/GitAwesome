@@ -6,6 +6,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mehequanna.gitawesome.Constants;
@@ -29,7 +31,10 @@ public class SavedRepoListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gits);
         ButterKnife.bind(this);
 
-        mRepoReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_REPOS);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+
+        mRepoReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_REPOS).child(uid);
         setUpFirebaseAdapter();
     }
 
