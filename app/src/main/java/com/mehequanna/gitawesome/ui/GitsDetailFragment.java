@@ -3,6 +3,7 @@ package com.mehequanna.gitawesome.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,11 +53,15 @@ public class GitsDetailFragment extends Fragment {
 
         Picasso.with(view.getContext()).load(mRepo.getAvatar()).into(mGitsImageView);
 
+        String newStargazers = mRepo.getStargazers() + " stargazers!";
+        String newCreated = TextUtils.substring(mRepo.getCreatedAt(), 0, 10);
+        String newUpdated = TextUtils.substring(mRepo.getUpdatedAt(), 0, 10);
+
         mGitsNameTextView.setText(mRepo.getName());
         mDescriptionTextView.setText(mRepo.getDescription());
-        mCreatedTextView.setText(mRepo.getCreatedAt());
-        mUpdatedTextView.setText(mRepo.getUpdatedAt());
-        mStargazersTextView.setText(mRepo.getStargazers());
+        mCreatedTextView.setText(newCreated);
+        mUpdatedTextView.setText(newUpdated);
+        mStargazersTextView.setText(newStargazers);
         mGithubTextView.setText(mRepo.getWebsite());
 
         return view;
