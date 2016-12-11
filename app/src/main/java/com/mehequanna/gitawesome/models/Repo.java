@@ -57,4 +57,8 @@ public class Repo {
     public String getPushId() {
         return pushId;
     }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
+    }
 }

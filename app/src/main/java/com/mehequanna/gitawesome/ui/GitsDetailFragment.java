@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,10 +95,20 @@ public class GitsDetailFragment extends Fragment implements View.OnClickListener
         }
 
         if (v == mSaveGitButton) {
-            DatabaseReference repoRef = FirebaseDatabase.getInstance()
-                        .getReference(Constants.FIREBASE_CHILD_REPOS);
-                repoRef.push().setValue(mRepo);
-                Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
+
+            DatabaseReference repoRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_REPOS)
+                    .child(uid);
+
+            DatabaseReference pushRef = repoRef.push();
+            String pushId = pushRef.getKey();
+            mRepo.setPushId(pushId);
+            pushRef.setValue(mRepo);
+
+            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
 
 
 //            Hopefully this will work later
