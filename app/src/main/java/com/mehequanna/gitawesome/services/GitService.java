@@ -1,6 +1,9 @@
 package com.mehequanna.gitawesome.services;
 
+import android.util.Log;
+
 import com.mehequanna.gitawesome.Constants;
+import com.mehequanna.gitawesome.models.GitUser;
 import com.mehequanna.gitawesome.models.Repo;
 
 import org.json.JSONArray;
@@ -87,5 +90,41 @@ public class GitService {
 
         Call call = client2.newCall(request);
         call.enqueue(callback);
+    }
+
+    public ArrayList<GitUser> processUserResult(Response response) {
+        ArrayList<GitUser> gitUsers = new ArrayList<>();
+
+        try {
+            String jsonData = response.body().string();
+            if (response.isSuccessful()) {
+                JSONObject userJSON = new JSONObject(jsonData);
+//                JSONObject languageResults = languageJSON.getJSONObject(i);
+
+                String login = userJSON.getString("login");
+                Log.d("logs", "processUserResult: login: " + login);
+                String avatar_url = userJSON.getString("avatar_url");
+                Log.d("logs", "processUserResult: avatar: " + avatar_url);
+                String html_url = userJSON.getString("html_url");
+                Log.d("logs", "processUserResult: html: " + html_url);
+                String location = userJSON.getString("location");
+                Log.d("logs", "processUserResult: location: " + location);
+                String bio = userJSON.getString("bio");
+                Log.d("logs", "processUserResult: bio: " + bio);
+                String public_repos = userJSON.getString("public_repos");
+                Log.d("logs", "processUserResult: repos: " + public_repos);
+                String followers = userJSON.getString("followers");
+                Log.d("logs", "processUserResult: followers: " + followers);
+
+                GitUser gitUser = new GitUser(login, avatar_url, html_url, location, bio, public_repos, followers);
+                gitUsers.add(0, gitUser);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return gitUsers;
     }
 }
