@@ -17,7 +17,7 @@
     <string name="locationPlaceholder">Location</string>
     <string name="saved">Saved Languages</string>
     <string name="profileImage">Profile Picture</string>
-    <string name="errorMessage">Sorry, there are no repositories using that language.</string>
+    <string name="errorMessage">Sorry, there are no repositories using that language.\nUse search icon at the top right of the screen to try again.</string>
     <string name="aboutText">GitAwesome is a little app I wrote while at Epicodus. This app will hopefully help you use GitHub and Meetup.com to become a better programmer. Enjoy!</string>
     <string name="aboutLinkText">View GitHub Repo!</string>
     <string name="alreadyHave">Already have an account? Log in here!</string>

@@ -1,19 +1,18 @@
 package com.mehequanna.gitawesome.ui;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mehequanna.gitawesome.Constants;
 import com.mehequanna.gitawesome.R;
@@ -114,7 +113,7 @@ public class GitsActivity extends AppCompatActivity {
                             mRecyclerView.setLayoutManager(layoutManager);
                             mRecyclerView.setHasFixedSize(true);
                         } else {
-                            mErrorTextView.setText(R.string.errorMessage);
+                            Toast.makeText(GitsActivity.this, R.string.errorMessage, Toast.LENGTH_LONG).show();
                         }
 
                     }
