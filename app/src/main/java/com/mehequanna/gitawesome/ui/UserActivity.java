@@ -22,9 +22,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.mehequanna.gitawesome.Constants;
 import com.mehequanna.gitawesome.R;
+import com.mehequanna.gitawesome.models.GitUser;
 import com.mehequanna.gitawesome.services.GitService;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -51,6 +53,8 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     private SharedPreferences.Editor mEditor;
     private String mUserZip;
     private String mUsername;
+
+    public ArrayList<GitUser> mUsers = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -186,12 +190,21 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    String jsonData = response.body().string();
-                    Log.v("logs", "Find User response: " + jsonData);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                mUsers = gitService.processUserResult(response);
+
+                UserActivity.this.runOnUiThread(new Runnable(){
+
+                    @Override
+                    public void run() {
+                        // This code shows an error message if there are no repos for the recycler view to show.
+                        if (mUsers.size() > 0) {
+
+                        } else {
+                            Toast.makeText(UserActivity.this, "No Github user by that name.", Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                });
             }
         });
     }
