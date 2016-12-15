@@ -198,6 +198,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
                     public void run() {
                         // This code shows an error message if there are no repos for the recycler view to show.
                         if (mUsers.size() > 0) {
+                            // Add content to page.
 
                         } else {
                             Toast.makeText(UserActivity.this, "No Github user by that name.", Toast.LENGTH_LONG).show();

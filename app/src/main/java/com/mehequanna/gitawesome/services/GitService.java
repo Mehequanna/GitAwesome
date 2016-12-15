@@ -99,22 +99,14 @@ public class GitService {
             String jsonData = response.body().string();
             if (response.isSuccessful()) {
                 JSONObject userJSON = new JSONObject(jsonData);
-//                JSONObject languageResults = languageJSON.getJSONObject(i);
 
                 String login = userJSON.getString("login");
-                Log.d("logs", "processUserResult: login: " + login);
                 String avatar_url = userJSON.getString("avatar_url");
-                Log.d("logs", "processUserResult: avatar: " + avatar_url);
                 String html_url = userJSON.getString("html_url");
-                Log.d("logs", "processUserResult: html: " + html_url);
-                String location = userJSON.getString("location");
-                Log.d("logs", "processUserResult: location: " + location);
-                String bio = userJSON.getString("bio");
-                Log.d("logs", "processUserResult: bio: " + bio);
+                String location = userJSON.optString("location", "Unknown");
+                String bio = userJSON.optString("bio", "No github bio to display.");
                 String public_repos = userJSON.getString("public_repos");
-                Log.d("logs", "processUserResult: repos: " + public_repos);
                 String followers = userJSON.getString("followers");
-                Log.d("logs", "processUserResult: followers: " + followers);
 
                 GitUser gitUser = new GitUser(login, avatar_url, html_url, location, bio, public_repos, followers);
                 gitUsers.add(0, gitUser);
