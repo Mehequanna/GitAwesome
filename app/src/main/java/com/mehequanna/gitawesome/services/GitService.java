@@ -1,7 +1,5 @@
 package com.mehequanna.gitawesome.services;
 
-import android.util.Log;
-
 import com.mehequanna.gitawesome.Constants;
 import com.mehequanna.gitawesome.models.Repo;
 
@@ -18,10 +16,6 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-
-/**
- * Created by stephenemery on 12/2/16.
- */
 
 public class GitService {
     public static void findLanguageRepos(String language, Callback callback) {
@@ -76,5 +70,22 @@ public class GitService {
         }
         return languageRepos;
 
+    }
+
+    public static void findUserInfo(String username, Callback callback) {
+        OkHttpClient client2 = new OkHttpClient.Builder().build();
+
+        String firebaseUsername = username;
+
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.GIT_BASE_URL + firebaseUsername).newBuilder();
+        urlBuilder.addQueryParameter(Constants.GIT_API_QUERY, Constants.GIT_API_KEY);
+        String url = urlBuilder.build().toString();
+
+        Request request= new Request.Builder()
+                .url(url)
+                .build();
+
+        Call call = client2.newCall(request);
+        call.enqueue(callback);
     }
 }
