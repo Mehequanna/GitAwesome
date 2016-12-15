@@ -61,9 +61,10 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    mUsername = user.getDisplayName();
-                    Log.d("Shared Pref Username", mUsername);
-                    getSupportActionBar().setTitle(user.getDisplayName() + " is Awesome!");
+                    String lowerUsername = user.getDisplayName().substring(1);
+                    mUsername = user.getDisplayName().substring(0, 1).toUpperCase() + lowerUsername;
+                    Log.d("Firebase Username", mUsername);
+                    getSupportActionBar().setTitle(mUsername + " is Awesome!");
                 } else {
                     getSupportActionBar().setTitle("Who are you?");
                 }
