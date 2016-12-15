@@ -61,6 +61,8 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
+                    mUsername = user.getDisplayName();
+                    Log.d("Shared Pref Username", mUsername);
                     getSupportActionBar().setTitle(user.getDisplayName() + " is Awesome!");
                 } else {
                     getSupportActionBar().setTitle("Who are you?");
@@ -69,8 +71,6 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         };
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mUsername = mSharedPreferences.getString(Constants.PREFERENCES_USER_USERNAME_KEY, null);
-        Log.d("Shared Pref Username", mUsername);
         mUserZip = mSharedPreferences.getString(Constants.PREFERENCES_USER_ZIP_KEY, null);
         Log.d("Shared Pref Zip", mUserZip);
 
