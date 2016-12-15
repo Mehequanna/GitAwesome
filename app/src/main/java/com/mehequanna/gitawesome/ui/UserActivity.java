@@ -2,10 +2,10 @@ package com.mehequanna.gitawesome.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -22,9 +22,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.mehequanna.gitawesome.Constants;
 import com.mehequanna.gitawesome.R;
+import com.mehequanna.gitawesome.services.GitService;
+
+import java.io.IOException;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class UserActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.userTextView) TextView mUserTextView;
@@ -64,7 +70,10 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
                     String lowerUsername = user.getDisplayName().substring(1);
                     mUsername = user.getDisplayName().substring(0, 1).toUpperCase() + lowerUsername;
                     Log.d("Firebase Username", mUsername);
+
                     getSupportActionBar().setTitle(mUsername + " is Awesome!");
+
+                    findUser(mUsername);
                 } else {
                     getSupportActionBar().setTitle("Who are you?");
                 }
@@ -164,5 +173,26 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
+    }
+
+    private void findUser(String username) {
+        final GitService gitService = new GitService();
+        gitService.findUserInfo(username, new Callback() {
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try {
+                    String jsonData = response.body().string();
+                    Log.v("logs", "Find User response: " + jsonData);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }
