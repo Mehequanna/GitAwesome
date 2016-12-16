@@ -12,9 +12,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +33,7 @@ import com.mehequanna.gitawesome.Constants;
 import com.mehequanna.gitawesome.R;
 import com.mehequanna.gitawesome.models.GitUser;
 import com.mehequanna.gitawesome.services.GitService;
+import com.mehequanna.gitawesome.util.DetectGestures;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -43,7 +46,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class UserActivity extends AppCompatActivity implements View.OnClickListener {
+public class UserActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener {
     private static final String TAG = "UserActivity";
     @Bind(R.id.userTextView) TextView mUserTextView;
     @Bind(R.id.profileImageView) ImageView mProfileImageView;
@@ -82,6 +85,8 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     Context context;
 
     public ArrayList<GitUser> mUsers = new ArrayList<>();
+
+    private GestureDetector mOverlayGestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +135,26 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         mSavedMeetupsButton.setOnClickListener(this);
         mProfileImageView.setOnClickListener(this);
 
+        DetectGestures overlayGestureDetector = new DetectGestures() {
+            @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                mOverlayTextView.setVisibility(View.INVISIBLE);
+                return true;
+            }
+        };
+
+        mOverlayGestureDetector = new GestureDetector(this, overlayGestureDetector);
+        mOverlayTextView.setOnTouchListener(this);
+
+    }
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        if (view == mOverlayTextView) {
+            mOverlayGestureDetector.onTouchEvent(motionEvent);
+            return true;
+        }
+        return false;
     }
 
     @Override
