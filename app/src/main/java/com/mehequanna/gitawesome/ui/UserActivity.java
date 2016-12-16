@@ -214,8 +214,13 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
                             // avatar
                             Picasso.with(context).load(currentUser.getAvatar_url()).resize(100,100).into(mProfileImageView);
 
-                            mLocationTextView.setText(currentUser.getLocation());
-                            mBioTextView.setText(currentUser.getBio());
+                            if (!currentUser.getLocation().equals("null")) {
+                                mLocationTextView.setText(currentUser.getLocation());
+                            }
+
+                            if (!currentUser.getBio().equals("null")) {
+                                mBioTextView.setText(currentUser.getBio());
+                            }
 
                             String publicRepos = "Repos: " + currentUser.getPublic_repos();
                             mReposTextView.setText(publicRepos);
