@@ -1,5 +1,6 @@
 package com.mehequanna.gitawesome.ui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import com.mehequanna.gitawesome.Constants;
 import com.mehequanna.gitawesome.R;
 import com.mehequanna.gitawesome.models.GitUser;
 import com.mehequanna.gitawesome.services.GitService;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,6 +40,9 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.userTextView) TextView mUserTextView;
     @Bind(R.id.profileImageView) ImageView mProfileImageView;
     @Bind(R.id.locationTextView) TextView mLocationTextView;
+    @Bind(R.id.bioTextView) TextView mBioTextView;
+    @Bind(R.id.reposTextView) TextView mReposTextView;
+    @Bind(R.id.followersTextView) TextView mFollowersTextView;
 
     @Bind(R.id.zipEditText) EditText mZipEditText;
     @Bind(R.id.languageEditText) EditText mLanguageEditText;
@@ -54,6 +59,8 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     private String mUserZip;
     private String mUsername;
 
+    Context context;
+
     public ArrayList<GitUser> mUsers = new ArrayList<>();
 
     @Override
@@ -61,6 +68,8 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
         ButterKnife.bind(this);
+
+        context = this;
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mEditor = mSharedPreferences.edit();
@@ -198,7 +207,17 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
                     public void run() {
                         // This code shows an error message if there are no repos for the recycler view to show.
                         if (mUsers.size() > 0) {
-                            // Add content to page.
+                            GitUser currentUser = mUsers.get(0);
+
+                            mUserTextView.setText(currentUser.getLogin());
+
+                            // avatar
+                            Picasso.with(context).load(currentUser.getAvatar_url()).resize(100,100).into(mProfileImageView);
+
+                            mLocationTextView.setText(currentUser.getLocation());
+                            mBioTextView.setText(currentUser.getBio());
+                            mReposTextView.setText(currentUser.getPublic_repos());
+                            mFollowersTextView.setText(currentUser.getFollowers());
 
                         } else {
                             Toast.makeText(UserActivity.this, "No Github user by that name.", Toast.LENGTH_LONG).show();
