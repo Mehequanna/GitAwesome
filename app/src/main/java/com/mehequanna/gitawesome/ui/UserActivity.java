@@ -231,11 +231,9 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
             final CheckBox checkBox = (CheckBox) findViewById(R.id.overlayCheckbox);
             if (checkBox.isChecked()) {
                 mNoOverlay = true;
-                Toast.makeText(context, mNoOverlay + "", Toast.LENGTH_SHORT).show();
             }
             if (!checkBox.isChecked()) {
                 mNoOverlay = false;
-                Toast.makeText(context, mNoOverlay + "", Toast.LENGTH_SHORT).show();
             }
         }
 
