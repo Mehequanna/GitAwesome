@@ -12,7 +12,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.LandingActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,23 +22,29 @@
         </activity>
         <activity
             android:name=".ui.LoginActivity"
-            android:label="">
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mehequanna.gitawesome.ui.LandingActivity" />
         </activity>
-        <activity android:name=".ui.UserActivity"/>
-        <activity android:name=".ui.GitsActivity">
+        <activity android:name=".ui.UserActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.GitsActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mehequanna.gitawesome.ui.LandingActivity" />
         </activity>
         <activity
             android:name=".ui.AboutActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity android:name=".ui.CreateAccountActivity" />
-        <activity android:name=".ui.GitsDetailActivity" />
-        <activity android:name=".ui.SavedRepoListActivity"></activity>
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.CreateAccountActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.GitsDetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.SavedRepoListActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
