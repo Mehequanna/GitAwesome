@@ -52,12 +52,24 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.reposTextView) TextView mReposTextView;
     @Bind(R.id.followersTextView) TextView mFollowersTextView;
 
+    //Search/Button Binds
     @Bind(R.id.zipEditText) EditText mZipEditText;
     @Bind(R.id.languageEditText) EditText mLanguageEditText;
     @Bind(R.id.searchGitButton) Button mSearchGitButton;
     @Bind(R.id.searchMeetupButton) Button mSearchMeetupButton;
     @Bind(R.id.savedGithubButton) Button mSavedGithubButton;
     @Bind(R.id.savedMeetupsButton) Button mSavedMeetupsButton;
+
+    //Overlay Binds
+    @Bind(R.id.overlayCheckboxTextView) TextView mOverlayCheckboxTextView;
+    @Bind(R.id.overlayDismissTextView) TextView mOverlayDismissTextView;
+    @Bind(R.id.overlayMoreImageView) ImageView mOverlayMoreImageView;
+    @Bind(R.id.overlayMoreTextView) TextView mOverlayMoreTextView;
+    @Bind(R.id.overlayPictureTextView) TextView mOverlayPictureTextView;
+    @Bind(R.id.overlaySearchImageView) ImageView mOverlaySearchImageView;
+    @Bind(R.id.overlaySearchTextView) TextView mOverlaySearchTextView;
+    @Bind(R.id.overlayTextView) TextView mOverlayTextView;
+
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
