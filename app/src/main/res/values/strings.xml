@@ -44,4 +44,7 @@
     <string name="no_bio">No Github Bio</string>
     <string name="no_followers">No Followers</string>
     <string name="change_username">Change Github Username</string>
+    <string name="more_icon">More Icon</string>
+    <string name="search_icon">Search Icon</string>
+    <string name="overlay_text">\t\t\t\t\tTap on the 3 dots to logout.\n\n\t\t\t\t\tTap the search icon to change your saved github username.\n\nTap your Profile picture to go to your profile on github.\n\nDouble tap to dismiss this message.\n\n[ ] Check if you don’t want to see this help again.</string>
 </resources>
