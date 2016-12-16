@@ -29,6 +29,7 @@ import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -78,6 +79,13 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     String lowerUsername = user.getDisplayName().substring(1);
