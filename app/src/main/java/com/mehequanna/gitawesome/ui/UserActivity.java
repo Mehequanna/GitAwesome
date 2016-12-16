@@ -87,6 +87,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     public ArrayList<GitUser> mUsers = new ArrayList<>();
 
     private GestureDetector mOverlayGestureDetector;
+    private GestureDetector mPictureGestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,31 +130,41 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         mUserZip = mSharedPreferences.getString(Constants.PREFERENCES_USER_ZIP_KEY, null);
         Log.d("Shared Pref Zip", mUserZip);
 
-        mSearchGitButton.setOnClickListener(this);
-        mSearchMeetupButton.setOnClickListener(this);
-        mSavedGithubButton.setOnClickListener(this);
-        mSavedMeetupsButton.setOnClickListener(this);
-        mProfileImageView.setOnClickListener(this);
+        DetectGestures pictureGestureDetector = new DetectGestures(){
+            @Override
+            public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
+                Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(mUsers.get(0).getHtml_url()));
+                startActivity(webIntent);
+                Toast.makeText(UserActivity.this, "Fling", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        };
 
         DetectGestures overlayGestureDetector = new DetectGestures() {
             @Override
             public boolean onDoubleTap(MotionEvent e) {
-                mOverlayTextView.setVisibility(View.INVISIBLE);
-                mOverlayCheckboxTextView.setVisibility(View.INVISIBLE);
-                mOverlayDismissTextView.setVisibility(View.INVISIBLE);
-                mOverlayMoreImageView.setVisibility(View.INVISIBLE);
-                mOverlayMoreTextView.setVisibility(View.INVISIBLE);
-                mOverlayPictureTextView.setVisibility(View.INVISIBLE);
-                mOverlaySearchImageView.setVisibility(View.INVISIBLE);
-                mOverlaySearchTextView.setVisibility(View.INVISIBLE);
-
+                mOverlayTextView.setVisibility(View.GONE);
+                mOverlayCheckboxTextView.setVisibility(View.GONE);
+                mOverlayDismissTextView.setVisibility(View.GONE);
+                mOverlayMoreImageView.setVisibility(View.GONE);
+                mOverlayMoreTextView.setVisibility(View.GONE);
+                mOverlayPictureTextView.setVisibility(View.GONE);
+                mOverlaySearchImageView.setVisibility(View.GONE);
+                mOverlaySearchTextView.setVisibility(View.GONE);
                 return true;
             }
         };
 
         mOverlayGestureDetector = new GestureDetector(this, overlayGestureDetector);
         mOverlayTextView.setOnTouchListener(this);
+        mPictureGestureDetector = new GestureDetector(this, pictureGestureDetector);
+        mProfileImageView.setOnTouchListener(this);
 
+        mSearchGitButton.setOnClickListener(this);
+        mSearchMeetupButton.setOnClickListener(this);
+        mSavedGithubButton.setOnClickListener(this);
+        mSavedMeetupsButton.setOnClickListener(this);
     }
 
     @Override
@@ -162,17 +173,16 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
             mOverlayGestureDetector.onTouchEvent(motionEvent);
             return true;
         }
+
+        if (view == mProfileImageView) {
+            mPictureGestureDetector.onTouchEvent(motionEvent);
+            return true;
+        }
         return false;
     }
 
     @Override
     public void onClick(View v) {
-        if (v == mProfileImageView) {
-            Intent webIntent = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse(mUsers.get(0).getHtml_url()));
-            startActivity(webIntent);
-        }
-
         if (v == mSearchGitButton) {
             if (TextUtils.isEmpty(mLanguageEditText.getText().toString().trim())) {
                 Toast.makeText(UserActivity.this, "Using previously searched language.", Toast.LENGTH_SHORT).show();
