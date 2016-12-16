@@ -67,8 +67,8 @@
         android:layout_alignStart="@+id/searchMeetupButton" />
 
     <ImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         app:srcCompat="@drawable/dummyprofile"
         android:gravity="center_horizontal"
         android:contentDescription="@string/profileImage"

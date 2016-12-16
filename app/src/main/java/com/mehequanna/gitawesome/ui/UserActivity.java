@@ -272,7 +272,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
                             mUserTextView.setText(currentUser.getLogin());
 
                             // avatar
-                            Picasso.with(context).load(currentUser.getAvatar_url()).resize(100,100).into(mProfileImageView);
+                            Picasso.with(context).load(currentUser.getAvatar_url()).resize(140,140).into(mProfileImageView);
 
                             if (!currentUser.getLocation().equals("null")) {
                                 mLocationTextView.setText(currentUser.getLocation());
