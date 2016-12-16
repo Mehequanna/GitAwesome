@@ -3,6 +3,7 @@ package com.mehequanna.gitawesome.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -115,11 +116,18 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         mSearchMeetupButton.setOnClickListener(this);
         mSavedGithubButton.setOnClickListener(this);
         mSavedMeetupsButton.setOnClickListener(this);
+        mProfileImageView.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
+        if (v == mProfileImageView) {
+            Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse(mUsers.get(0).getHtml_url()));
+            startActivity(webIntent);
+        }
+
         if (v == mSearchGitButton) {
             if (TextUtils.isEmpty(mLanguageEditText.getText().toString().trim())) {
                 Toast.makeText(UserActivity.this, "Using previously searched language.", Toast.LENGTH_SHORT).show();
