@@ -51,5 +51,5 @@
     <string name="overlay_search">Tap the search icon to change your saved github username.</string>
     <string name="overlay_profile_image">Fling your Profile picture to go to your profile on github.</string>
     <string name="overlay_dismiss">Double tap to dismiss this message.</string>
-    <string name="overlay_checkbox">[ ] Check if you don’t want to see this help again.</string>
+    <string name="overlay_checkbox">Check if you don’t want to see this help again.</string>
 </resources>

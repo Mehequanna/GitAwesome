@@ -205,19 +205,24 @@
         android:layout_marginLeft="6dp"
         android:layout_marginStart="6dp" />
 
-    <TextView
+    <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/overlay_checkbox"
         android:textColor="#fff"
         android:elevation="2dp"
         android:textSize="24sp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
         android:paddingLeft="25dp"
-        android:paddingRight="25dp"
+        android:paddingStart="25dp"
+        android:paddingRight="15dp"
+        android:paddingEnd="15dp"
         android:id="@+id/overlayCheckboxTextView"
         android:layout_below="@+id/followersTextView"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:buttonTint="#fff"/>
 
     <TextView
         android:layout_width="wrap_content"
