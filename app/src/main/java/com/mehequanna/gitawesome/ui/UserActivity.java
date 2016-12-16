@@ -3,6 +3,7 @@ package com.mehequanna.gitawesome.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -89,6 +90,8 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     private GestureDetector mOverlayGestureDetector;
     private GestureDetector mPictureGestureDetector;
 
+    MediaPlayer wee;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +99,8 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
 
         context = this;
+
+        wee = MediaPlayer.create(this, R.raw.wee);
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mEditor = mSharedPreferences.edit();
@@ -136,7 +141,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
                 Intent webIntent = new Intent(Intent.ACTION_VIEW,
                         Uri.parse(mUsers.get(0).getHtml_url()));
                 startActivity(webIntent);
-                Toast.makeText(UserActivity.this, "Fling", Toast.LENGTH_SHORT).show();
+                wee.start();
                 return true;
             }
         };
