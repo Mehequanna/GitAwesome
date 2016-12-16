@@ -26,11 +26,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mehequanna.gitawesome.ui.LandingActivity" />
         </activity>
-        <activity android:name=".ui.UserActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mehequanna.gitawesome.ui.LandingActivity" />
-        </activity>
+        <activity android:name=".ui.UserActivity"/>
         <activity android:name=".ui.GitsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
