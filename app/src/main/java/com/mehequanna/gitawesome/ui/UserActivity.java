@@ -216,8 +216,12 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
 
                             mLocationTextView.setText(currentUser.getLocation());
                             mBioTextView.setText(currentUser.getBio());
-                            mReposTextView.setText(currentUser.getPublic_repos());
-                            mFollowersTextView.setText(currentUser.getFollowers());
+
+                            String publicRepos = "Repos: " + currentUser.getPublic_repos();
+                            mReposTextView.setText(publicRepos);
+
+                            String followers = "Followers: " + currentUser.getFollowers();
+                            mFollowersTextView.setText(followers);
 
                         } else {
                             Toast.makeText(UserActivity.this, "No Github user by that name.", Toast.LENGTH_LONG).show();
