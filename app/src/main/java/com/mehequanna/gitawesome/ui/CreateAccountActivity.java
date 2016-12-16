@@ -39,6 +39,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     @Bind(R.id.nameEditText) EditText mNameEditText;
 
     private String mName;
+    private String mUsername;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -99,8 +100,8 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         String zip = mZipEditText.getText().toString().trim();
         addUserZipToSharedPreferences(zip);
 
-        String username = mUsernameEditText.getText().toString().trim();
-        addUsernameToSharedPreferences(username);
+        mUsername = mUsernameEditText.getText().toString().trim();
+//        addUsernameToSharedPreferences(mUsername);
 
         String password = mPasswordEditText.getText().toString().trim();
         String confirmPassword = mConfirmPassword.getText().toString().trim();
@@ -108,7 +109,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         boolean validEmail = isValidEmail(email);
         boolean validName = isValidName(mName);
         boolean validZip = isValidZip(zip);
-        boolean validUsername = isValidUsername(username);
+        boolean validUsername = isValidUsername(mUsername);
         boolean validPassword = isValidPassword(password, confirmPassword);
         if(!validEmail || !validName || !validZip || !validUsername || !validPassword) return;
 
@@ -206,7 +207,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     private void createFirebaseUserProfile(final FirebaseUser user) {
 
         UserProfileChangeRequest addProfileName = new UserProfileChangeRequest.Builder()
-                .setDisplayName(mName)
+                .setDisplayName(mUsername)
                 .build();
 
         user.updateProfile(addProfileName)

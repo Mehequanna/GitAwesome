@@ -3,6 +3,7 @@ package com.mehequanna.gitawesome.services;
 import android.util.Log;
 
 import com.mehequanna.gitawesome.Constants;
+import com.mehequanna.gitawesome.models.GitUser;
 import com.mehequanna.gitawesome.models.Repo;
 
 import org.json.JSONArray;
@@ -18,10 +19,6 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-
-/**
- * Created by stephenemery on 12/2/16.
- */
 
 public class GitService {
     public static void findLanguageRepos(String language, Callback callback) {
@@ -76,5 +73,50 @@ public class GitService {
         }
         return languageRepos;
 
+    }
+
+    public static void findUserInfo(String username, Callback callback) {
+        OkHttpClient client2 = new OkHttpClient.Builder().build();
+
+        String firebaseUsername = username;
+
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.GIT_BASE_URL + firebaseUsername).newBuilder();
+        urlBuilder.addQueryParameter(Constants.GIT_API_QUERY, Constants.GIT_API_KEY);
+        String url = urlBuilder.build().toString();
+
+        Request request= new Request.Builder()
+                .url(url)
+                .build();
+
+        Call call = client2.newCall(request);
+        call.enqueue(callback);
+    }
+
+    public ArrayList<GitUser> processUserResult(Response response) {
+        ArrayList<GitUser> gitUsers = new ArrayList<>();
+
+        try {
+            String jsonData = response.body().string();
+            if (response.isSuccessful()) {
+                JSONObject userJSON = new JSONObject(jsonData);
+
+                String login = userJSON.getString("login");
+                String avatar_url = userJSON.getString("avatar_url");
+                String html_url = userJSON.getString("html_url");
+                String location = userJSON.optString("location", "Unknown");
+                String bio = userJSON.optString("bio", "No github bio to display.");
+                String public_repos = userJSON.getString("public_repos");
+                String followers = userJSON.getString("followers");
+
+                GitUser gitUser = new GitUser(login, avatar_url, html_url, location, bio, public_repos, followers);
+                gitUsers.add(0, gitUser);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return gitUsers;
     }
 }
