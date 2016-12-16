@@ -160,39 +160,103 @@
         android:layout_height="match_parent"
         android:background="#aa000000"
         android:elevation="2dp"
-        android:textSize="24sp"
-        android:padding="40dp"
-        android:text="@string/overlay_text"
-        android:textColor="#fff"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/overLayTextView" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_search_white_24dp"
-        android:elevation="3dp"
-        android:id="@+id/overlaySearchImageView"
-        android:contentDescription="@string/search_icon"
-        android:layout_marginTop="28dp"
-        android:layout_alignTop="@+id/profileImageView"
-        android:layout_toLeftOf="@+id/userTextView"
-        android:layout_toStartOf="@+id/userTextView"
-        android:layout_marginRight="6dp"
-        android:layout_marginEnd="6dp" />
+        android:id="@+id/overlayTextView" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_more_vert_white_24dp"
-        android:elevation="3dp"
+        android:elevation="2dp"
         android:id="@+id/overlayMoreImageView"
         android:contentDescription="@string/more_icon"
-        android:layout_above="@+id/overlaySearchImageView"
-        android:layout_alignLeft="@+id/overlaySearchImageView"
-        android:layout_alignStart="@+id/overlaySearchImageView"
-        android:layout_marginBottom="6dp" />
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="21dp"
+        android:layout_alignTop="@+id/userTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_search_white_24dp"
+        android:elevation="2dp"
+        android:id="@+id/overlaySearchImageView"
+        android:contentDescription="@string/search_icon"
+        android:layout_alignTop="@+id/profileImageView"
+        android:layout_alignLeft="@+id/overlayMoreImageView"
+        android:layout_alignStart="@+id/overlayMoreImageView"
+        android:layout_marginTop="23dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/overlay_search"
+        android:textColor="#fff"
+        android:elevation="2dp"
+        android:textSize="24sp"
+        android:id="@+id/overlaySearchTextView"
+        android:layout_alignTop="@+id/overlaySearchImageView"
+        android:layout_toRightOf="@+id/overlaySearchImageView"
+        android:layout_toEndOf="@+id/overlaySearchImageView"
+        android:layout_marginLeft="6dp"
+        android:layout_marginStart="6dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/overlay_checkbox"
+        android:textColor="#fff"
+        android:elevation="2dp"
+        android:textSize="24sp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:id="@+id/overlayCheckboxTextView"
+        android:layout_below="@+id/followersTextView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/overlay_dismiss"
+        android:textColor="#fff"
+        android:elevation="2dp"
+        android:textSize="24sp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingStart="25dp"
+        android:id="@+id/overlayDismissTextView"
+        android:layout_alignTop="@+id/bioTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/overlay_profile_image"
+        android:textColor="#fff"
+        android:elevation="2dp"
+        android:textSize="24sp"
+        android:id="@+id/overlayPictureTextView"
+        android:layout_marginBottom="12dp"
+        android:layout_above="@+id/bioTextView"
+        android:layout_alignLeft="@+id/zipEditText"
+        android:layout_alignStart="@+id/zipEditText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/overlay_3_dots"
+        android:textColor="#fff"
+        android:elevation="2dp"
+        android:textSize="24sp"
+        android:id="@+id/overlayThreeDotsTextView"
+        android:layout_alignTop="@+id/overlayMoreImageView"
+        android:layout_alignLeft="@+id/overlaySearchTextView"
+        android:layout_alignStart="@+id/overlaySearchTextView" />
 
 </RelativeLayout>
