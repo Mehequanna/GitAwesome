@@ -13,8 +13,8 @@
     <string name="loginHeader">Log In to GitAwesome!</string>
     <string name="signInButton">Sign In</string>
     <string name="hiddenText">Username and password are:\n \"user\" and \"password\"</string>
-    <string name="userPlaceholder">Github Username</string>
-    <string name="locationPlaceholder">Location</string>
+    <string name="userPlaceholder">Invalid Github Username!</string>
+    <string name="locationPlaceholder">No Location</string>
     <string name="saved">Saved Languages</string>
     <string name="profileImage">Profile Picture</string>
     <string name="errorMessage">Sorry, there are no repositories using that language.\nUse search icon at the top right of the screen to try again.</string>
@@ -40,4 +40,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_repos">No Repositories</string>
+    <string name="no_bio">No Github Bio</string>
+    <string name="no_followers">No Followers</string>
 </resources>
