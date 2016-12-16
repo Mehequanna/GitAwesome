@@ -139,6 +139,14 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public boolean onDoubleTap(MotionEvent e) {
                 mOverlayTextView.setVisibility(View.INVISIBLE);
+                mOverlayCheckboxTextView.setVisibility(View.INVISIBLE);
+                mOverlayDismissTextView.setVisibility(View.INVISIBLE);
+                mOverlayMoreImageView.setVisibility(View.INVISIBLE);
+                mOverlayMoreTextView.setVisibility(View.INVISIBLE);
+                mOverlayPictureTextView.setVisibility(View.INVISIBLE);
+                mOverlaySearchImageView.setVisibility(View.INVISIBLE);
+                mOverlaySearchTextView.setVisibility(View.INVISIBLE);
+
                 return true;
             }
         };
