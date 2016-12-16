@@ -254,7 +254,7 @@
         android:textColor="#fff"
         android:elevation="2dp"
         android:textSize="24sp"
-        android:id="@+id/overlayThreeDotsTextView"
+        android:id="@+id/overlayMoreTextView"
         android:layout_alignTop="@+id/overlayMoreImageView"
         android:layout_alignLeft="@+id/overlaySearchTextView"
         android:layout_alignStart="@+id/overlaySearchTextView" />
