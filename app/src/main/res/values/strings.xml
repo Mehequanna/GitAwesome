@@ -49,7 +49,7 @@
     <string name="search_icon">Search Icon</string>
     <string name="overlay_3_dots">Tap on the 3 dots to logout.</string>
     <string name="overlay_search">Tap the search icon to change your saved github username.</string>
-    <string name="overlay_profile_image">Tap your Profile picture to go to your profile on github.</string>
+    <string name="overlay_profile_image">Fling your Profile picture to go to your profile on github.</string>
     <string name="overlay_dismiss">Double tap to dismiss this message.</string>
     <string name="overlay_checkbox">[ ] Check if you don’t want to see this help again.</string>
 </resources>
