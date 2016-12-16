@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -65,7 +66,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.savedMeetupsButton) Button mSavedMeetupsButton;
 
     //Overlay Binds
-    @Bind(R.id.overlayCheckboxTextView) TextView mOverlayCheckboxTextView;
+    @Bind(R.id.overlayCheckbox) CheckBox mOverlayCheckbox;
     @Bind(R.id.overlayDismissTextView) TextView mOverlayDismissTextView;
     @Bind(R.id.overlayMoreImageView) ImageView mOverlayMoreImageView;
     @Bind(R.id.overlayMoreTextView) TextView mOverlayMoreTextView;
@@ -74,7 +75,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.overlaySearchTextView) TextView mOverlaySearchTextView;
     @Bind(R.id.overlayTextView) TextView mOverlayTextView;
 
-
+    private boolean mNoOverlay = false;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
@@ -150,7 +151,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public boolean onDoubleTap(MotionEvent e) {
                 mOverlayTextView.setVisibility(View.GONE);
-                mOverlayCheckboxTextView.setVisibility(View.GONE);
+                mOverlayCheckbox.setVisibility(View.GONE);
                 mOverlayDismissTextView.setVisibility(View.GONE);
                 mOverlayMoreImageView.setVisibility(View.GONE);
                 mOverlayMoreTextView.setVisibility(View.GONE);
@@ -170,6 +171,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         mSearchMeetupButton.setOnClickListener(this);
         mSavedGithubButton.setOnClickListener(this);
         mSavedMeetupsButton.setOnClickListener(this);
+        mOverlayCheckbox.setOnClickListener(this);
     }
 
     @Override
@@ -225,6 +227,18 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         if (v == mSearchMeetupButton) {
             Toast.makeText(UserActivity.this, "Search Meetup Function Coming Soon!", Toast.LENGTH_LONG).show();
         }
+        if (v == mOverlayCheckbox) {
+            final CheckBox checkBox = (CheckBox) findViewById(R.id.overlayCheckbox);
+            if (checkBox.isChecked()) {
+                mNoOverlay = true;
+                Toast.makeText(context, mNoOverlay + "", Toast.LENGTH_SHORT).show();
+            }
+            if (!checkBox.isChecked()) {
+                mNoOverlay = false;
+                Toast.makeText(context, mNoOverlay + "", Toast.LENGTH_SHORT).show();
+            }
+        }
+
     }
 
     private void addLanguageToSharedPreferences(String language) {

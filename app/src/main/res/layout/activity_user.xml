@@ -218,7 +218,7 @@
         android:paddingStart="25dp"
         android:paddingRight="15dp"
         android:paddingEnd="15dp"
-        android:id="@+id/overlayCheckboxTextView"
+        android:id="@+id/overlayCheckbox"
         android:layout_below="@+id/followersTextView"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
