@@ -75,7 +75,8 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.overlaySearchTextView) TextView mOverlaySearchTextView;
     @Bind(R.id.overlayTextView) TextView mOverlayTextView;
 
-    private boolean mNoOverlay = false;
+    private String mNoOverlay;
+    private String mSharedOverlay;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
@@ -100,11 +101,24 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
 
         context = this;
-
         wee = MediaPlayer.create(this, R.raw.wee);
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mEditor = mSharedPreferences.edit();
+
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mSharedOverlay = mSharedPreferences.getString(Constants.PREFERENCES_OVERLAY, null);
+
+        if (mSharedOverlay.equals("true")) {
+            mOverlayTextView.setVisibility(View.INVISIBLE);
+            mOverlayCheckbox.setVisibility(View.INVISIBLE);
+            mOverlayDismissTextView.setVisibility(View.INVISIBLE);
+            mOverlayMoreImageView.setVisibility(View.INVISIBLE);
+            mOverlayMoreTextView.setVisibility(View.INVISIBLE);
+            mOverlayPictureTextView.setVisibility(View.INVISIBLE);
+            mOverlaySearchImageView.setVisibility(View.INVISIBLE);
+            mOverlaySearchTextView.setVisibility(View.INVISIBLE);
+        }
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -132,10 +146,6 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
             }
         };
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mUserZip = mSharedPreferences.getString(Constants.PREFERENCES_USER_ZIP_KEY, null);
-        Log.d("Shared Pref Zip", mUserZip);
-
         DetectGestures pictureGestureDetector = new DetectGestures(){
             @Override
             public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
@@ -150,14 +160,14 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         DetectGestures overlayGestureDetector = new DetectGestures() {
             @Override
             public boolean onDoubleTap(MotionEvent e) {
-                mOverlayTextView.setVisibility(View.GONE);
-                mOverlayCheckbox.setVisibility(View.GONE);
-                mOverlayDismissTextView.setVisibility(View.GONE);
-                mOverlayMoreImageView.setVisibility(View.GONE);
-                mOverlayMoreTextView.setVisibility(View.GONE);
-                mOverlayPictureTextView.setVisibility(View.GONE);
-                mOverlaySearchImageView.setVisibility(View.GONE);
-                mOverlaySearchTextView.setVisibility(View.GONE);
+                mOverlayTextView.setVisibility(View.INVISIBLE);
+                mOverlayCheckbox.setVisibility(View.INVISIBLE);
+                mOverlayDismissTextView.setVisibility(View.INVISIBLE);
+                mOverlayMoreImageView.setVisibility(View.INVISIBLE);
+                mOverlayMoreTextView.setVisibility(View.INVISIBLE);
+                mOverlayPictureTextView.setVisibility(View.INVISIBLE);
+                mOverlaySearchImageView.setVisibility(View.INVISIBLE);
+                mOverlaySearchTextView.setVisibility(View.INVISIBLE);
                 return true;
             }
         };
@@ -230,10 +240,12 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         if (v == mOverlayCheckbox) {
             final CheckBox checkBox = (CheckBox) findViewById(R.id.overlayCheckbox);
             if (checkBox.isChecked()) {
-                mNoOverlay = true;
+                mNoOverlay = "true";
+                addOverlayToSharedPreferences(mNoOverlay);
             }
             if (!checkBox.isChecked()) {
-                mNoOverlay = false;
+                mNoOverlay = "false";
+                addOverlayToSharedPreferences(mNoOverlay);
             }
         }
 
@@ -241,6 +253,10 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
 
     private void addLanguageToSharedPreferences(String language) {
         mEditor.putString(Constants.PREFERENCES_USER_LANGUAGE_KEY, language).apply();
+    }
+
+    private void addOverlayToSharedPreferences(String overlay) {
+        mEditor.putString(Constants.PREFERENCES_OVERLAY, overlay).apply();
     }
 
     @Override
