@@ -18,7 +18,7 @@
     <string name="saved">Saved Languages</string>
     <string name="profileImage">Profile Picture</string>
     <string name="errorMessage">Sorry, there are no repositories using that language.\nUse search icon at the top right of the screen to try again.</string>
-    <string name="aboutText">GitAwesome is a little app I wrote while at Epicodus. This app will hopefully help you use GitHub and Meetup.com to become a better programmer. Enjoy!</string>
+    <string name="aboutText">GitAwesome is a little app I wrote while at Epicodus. This app will allow you to search and save popular repositories on Github. I was inspired to write the app because I'm always looking for new ideas or tools on Github!</string>
     <string name="aboutLinkText">View GitHub Repo!</string>
     <string name="alreadyHave">Already have an account? Log in here!</string>
     <string name="createAccountHeader">Create Account!</string>

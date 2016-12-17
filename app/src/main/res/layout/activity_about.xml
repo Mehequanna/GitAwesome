@@ -36,6 +36,7 @@
         android:textAlignment="center"
         android:text="@string/aboutText"
         android:textSize="24sp"
+        android:padding="10dp"
         android:textColor="@color/colorPrimaryText"
         android:background="#afff"
         android:id="@+id/aboutTextView"
