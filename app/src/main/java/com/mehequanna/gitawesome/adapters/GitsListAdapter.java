@@ -67,7 +67,11 @@ public class GitsListAdapter extends RecyclerView.Adapter<GitsListAdapter.GitsVi
         public void bindGits(Repo repo) {
             Picasso.with(mContext).load(repo.getAvatar()).resize(150,150).into(mReposImageView);
             mRepoNameTextView.setText(repo.getName());
-            mRepoDescriptionTextView.setText(repo.getDescription());
+
+            if (!repo.getDescription().equals("null")) {
+                mRepoDescriptionTextView.setText(repo.getDescription());
+            }
+
             String createdAt = TextUtils.substring(repo.getCreatedAt(), 0, 10);
             mRepoCreatedTextView.setText("Created: " + createdAt);
             mRepoStarsTextView.setText("Stars: " + repo.getStargazers());

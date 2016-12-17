@@ -31,7 +31,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Description"
+            android:text="No Description"
             android:id="@+id/repoDescriptionTextView"
             android:layout_below="@+id/repoNameTextView"
             android:textStyle="italic"/>

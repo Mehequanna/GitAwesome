@@ -1,7 +1,5 @@
 package com.mehequanna.gitawesome.services;
 
-import android.util.Log;
-
 import com.mehequanna.gitawesome.Constants;
 import com.mehequanna.gitawesome.models.GitUser;
 import com.mehequanna.gitawesome.models.Repo;
