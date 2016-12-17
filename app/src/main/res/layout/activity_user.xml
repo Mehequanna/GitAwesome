@@ -67,8 +67,8 @@
         android:layout_alignStart="@+id/searchMeetupButton" />
 
     <ImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         app:srcCompat="@drawable/dummyprofile"
         android:gravity="center_horizontal"
         android:contentDescription="@string/profileImage"
@@ -154,5 +154,114 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/reposTextView"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#aa000000"
+        android:elevation="2dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/overlayTextView" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_more_vert_white_24dp"
+        android:elevation="2dp"
+        android:id="@+id/overlayMoreImageView"
+        android:contentDescription="@string/more_icon"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="21dp"
+        android:layout_alignTop="@+id/userTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_search_white_24dp"
+        android:elevation="2dp"
+        android:id="@+id/overlaySearchImageView"
+        android:contentDescription="@string/search_icon"
+        android:layout_alignTop="@+id/profileImageView"
+        android:layout_alignLeft="@+id/overlayMoreImageView"
+        android:layout_alignStart="@+id/overlayMoreImageView"
+        android:layout_marginTop="23dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/overlay_search"
+        android:textColor="#fff"
+        android:elevation="2dp"
+        android:textSize="24sp"
+        android:id="@+id/overlaySearchTextView"
+        android:layout_alignTop="@+id/overlaySearchImageView"
+        android:layout_toRightOf="@+id/overlaySearchImageView"
+        android:layout_toEndOf="@+id/overlaySearchImageView"
+        android:layout_marginLeft="6dp"
+        android:layout_marginStart="6dp" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/overlay_checkbox"
+        android:textColor="#fff"
+        android:elevation="2dp"
+        android:textSize="24sp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:paddingLeft="25dp"
+        android:paddingStart="25dp"
+        android:paddingRight="15dp"
+        android:paddingEnd="15dp"
+        android:id="@+id/overlayCheckbox"
+        android:layout_below="@+id/followersTextView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:buttonTint="#fff"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/overlay_dismiss"
+        android:textColor="#fff"
+        android:elevation="2dp"
+        android:textSize="24sp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingStart="25dp"
+        android:id="@+id/overlayDismissTextView"
+        android:layout_alignTop="@+id/bioTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/overlay_profile_image"
+        android:textColor="#fff"
+        android:elevation="2dp"
+        android:textSize="24sp"
+        android:id="@+id/overlayPictureTextView"
+        android:layout_marginBottom="12dp"
+        android:layout_above="@+id/bioTextView"
+        android:layout_alignLeft="@+id/zipEditText"
+        android:layout_alignStart="@+id/zipEditText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/overlay_3_dots"
+        android:textColor="#fff"
+        android:elevation="2dp"
+        android:textSize="24sp"
+        android:id="@+id/overlayMoreTextView"
+        android:layout_alignTop="@+id/overlayMoreImageView"
+        android:layout_alignLeft="@+id/overlaySearchTextView"
+        android:layout_alignStart="@+id/overlaySearchTextView" />
 
 </RelativeLayout>

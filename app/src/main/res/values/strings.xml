@@ -32,7 +32,7 @@
     <string name="no_account">Don\'t have an account? Sign up here!</string>
     <string name="menu_logout">Logout</string>
     <string name="create_dialog">Gitting Awesome!</string>
-    <string name="create_dialog2">Authenticating with Firebase...</string>
+    <string name="create_dialog2">Authenticating with Firebase…</string>
     <string name="create_dialog3">Loading your awesome details!</string>
     <string name="search_language">Search New Language</string>
     <string name="saved_gits">Saved Gits</string>
@@ -40,7 +40,16 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="no_repos">No Repositories</string>
     <string name="no_bio">No Github Bio</string>
     <string name="no_followers">No Followers</string>
+    <string name="change_username">Change Github Username</string>
+    <string name="more_icon">More Icon</string>
+    <string name="search_icon">Search Icon</string>
+    <string name="overlay_3_dots">Tap on the 3 dots to logout.</string>
+    <string name="overlay_search">Tap the search icon to change your saved github username.</string>
+    <string name="overlay_profile_image">Fling your Profile picture to go to your profile on github.</string>
+    <string name="overlay_dismiss">Double tap to dismiss this message.</string>
+    <string name="overlay_checkbox">Check if you don’t want to see this help again.</string>
 </resources>

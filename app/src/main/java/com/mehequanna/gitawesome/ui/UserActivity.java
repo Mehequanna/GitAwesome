@@ -3,28 +3,39 @@ package com.mehequanna.gitawesome.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.mehequanna.gitawesome.Constants;
 import com.mehequanna.gitawesome.R;
 import com.mehequanna.gitawesome.models.GitUser;
 import com.mehequanna.gitawesome.services.GitService;
+import com.mehequanna.gitawesome.util.DetectGestures;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -37,7 +48,8 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class UserActivity extends AppCompatActivity implements View.OnClickListener {
+public class UserActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener {
+    private static final String TAG = "UserActivity";
     @Bind(R.id.userTextView) TextView mUserTextView;
     @Bind(R.id.profileImageView) ImageView mProfileImageView;
     @Bind(R.id.locationTextView) TextView mLocationTextView;
@@ -45,6 +57,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.reposTextView) TextView mReposTextView;
     @Bind(R.id.followersTextView) TextView mFollowersTextView;
 
+    //Search/Button Binds
     @Bind(R.id.zipEditText) EditText mZipEditText;
     @Bind(R.id.languageEditText) EditText mLanguageEditText;
     @Bind(R.id.searchGitButton) Button mSearchGitButton;
@@ -52,6 +65,18 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.savedGithubButton) Button mSavedGithubButton;
     @Bind(R.id.savedMeetupsButton) Button mSavedMeetupsButton;
 
+    //Overlay Binds
+    @Bind(R.id.overlayCheckbox) CheckBox mOverlayCheckbox;
+    @Bind(R.id.overlayDismissTextView) TextView mOverlayDismissTextView;
+    @Bind(R.id.overlayMoreImageView) ImageView mOverlayMoreImageView;
+    @Bind(R.id.overlayMoreTextView) TextView mOverlayMoreTextView;
+    @Bind(R.id.overlayPictureTextView) TextView mOverlayPictureTextView;
+    @Bind(R.id.overlaySearchImageView) ImageView mOverlaySearchImageView;
+    @Bind(R.id.overlaySearchTextView) TextView mOverlaySearchTextView;
+    @Bind(R.id.overlayTextView) TextView mOverlayTextView;
+
+    private String mNoOverlay;
+    private String mSharedOverlay;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
@@ -64,6 +89,11 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
 
     public ArrayList<GitUser> mUsers = new ArrayList<>();
 
+    private GestureDetector mOverlayGestureDetector;
+    private GestureDetector mPictureGestureDetector;
+
+    MediaPlayer wee;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,9 +101,24 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
 
         context = this;
+        wee = MediaPlayer.create(this, R.raw.wee);
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mEditor = mSharedPreferences.edit();
+
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mSharedOverlay = mSharedPreferences.getString(Constants.PREFERENCES_OVERLAY, null);
+
+        if (mSharedOverlay.equals("true")) {
+            mOverlayTextView.setVisibility(View.INVISIBLE);
+            mOverlayCheckbox.setVisibility(View.INVISIBLE);
+            mOverlayDismissTextView.setVisibility(View.INVISIBLE);
+            mOverlayMoreImageView.setVisibility(View.INVISIBLE);
+            mOverlayMoreTextView.setVisibility(View.INVISIBLE);
+            mOverlayPictureTextView.setVisibility(View.INVISIBLE);
+            mOverlaySearchImageView.setVisibility(View.INVISIBLE);
+            mOverlaySearchTextView.setVisibility(View.INVISIBLE);
+        }
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -101,15 +146,56 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
             }
         };
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mUserZip = mSharedPreferences.getString(Constants.PREFERENCES_USER_ZIP_KEY, null);
-        Log.d("Shared Pref Zip", mUserZip);
+        DetectGestures pictureGestureDetector = new DetectGestures(){
+            @Override
+            public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
+                Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(mUsers.get(0).getHtml_url()));
+                startActivity(webIntent);
+                wee.start();
+                return true;
+            }
+        };
+
+        DetectGestures overlayGestureDetector = new DetectGestures() {
+            @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                mOverlayTextView.setVisibility(View.INVISIBLE);
+                mOverlayCheckbox.setVisibility(View.INVISIBLE);
+                mOverlayDismissTextView.setVisibility(View.INVISIBLE);
+                mOverlayMoreImageView.setVisibility(View.INVISIBLE);
+                mOverlayMoreTextView.setVisibility(View.INVISIBLE);
+                mOverlayPictureTextView.setVisibility(View.INVISIBLE);
+                mOverlaySearchImageView.setVisibility(View.INVISIBLE);
+                mOverlaySearchTextView.setVisibility(View.INVISIBLE);
+                return true;
+            }
+        };
+
+        mOverlayGestureDetector = new GestureDetector(this, overlayGestureDetector);
+        mOverlayTextView.setOnTouchListener(this);
+        mPictureGestureDetector = new GestureDetector(this, pictureGestureDetector);
+        mProfileImageView.setOnTouchListener(this);
 
         mSearchGitButton.setOnClickListener(this);
         mSearchMeetupButton.setOnClickListener(this);
         mSavedGithubButton.setOnClickListener(this);
         mSavedMeetupsButton.setOnClickListener(this);
+        mOverlayCheckbox.setOnClickListener(this);
+    }
 
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        if (view == mOverlayTextView) {
+            mOverlayGestureDetector.onTouchEvent(motionEvent);
+            return true;
+        }
+
+        if (view == mProfileImageView) {
+            mPictureGestureDetector.onTouchEvent(motionEvent);
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -151,10 +237,26 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         if (v == mSearchMeetupButton) {
             Toast.makeText(UserActivity.this, "Search Meetup Function Coming Soon!", Toast.LENGTH_LONG).show();
         }
+        if (v == mOverlayCheckbox) {
+            final CheckBox checkBox = (CheckBox) findViewById(R.id.overlayCheckbox);
+            if (checkBox.isChecked()) {
+                mNoOverlay = "true";
+                addOverlayToSharedPreferences(mNoOverlay);
+            }
+            if (!checkBox.isChecked()) {
+                mNoOverlay = "false";
+                addOverlayToSharedPreferences(mNoOverlay);
+            }
+        }
+
     }
 
     private void addLanguageToSharedPreferences(String language) {
         mEditor.putString(Constants.PREFERENCES_USER_LANGUAGE_KEY, language).apply();
+    }
+
+    private void addOverlayToSharedPreferences(String overlay) {
+        mEditor.putString(Constants.PREFERENCES_OVERLAY, overlay).apply();
     }
 
     @Override
@@ -175,6 +277,26 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_user, menu);
+        ButterKnife.bind(this);
+
+        MenuItem menuItem = menu.findItem(R.id.action_change_user);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                updateUsernameFirebase(query);
+                findUser(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -194,6 +316,24 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
+    }
+
+    private void updateUsernameFirebase(String query) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                .setDisplayName(query)
+                .build();
+
+        user.updateProfile(profileUpdates)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "User profile updated.");
+                        }
+                    }
+                });
     }
 
     private void findUser(String username) {
@@ -220,7 +360,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
                             mUserTextView.setText(currentUser.getLogin());
 
                             // avatar
-                            Picasso.with(context).load(currentUser.getAvatar_url()).resize(100,100).into(mProfileImageView);
+                            Picasso.with(context).load(currentUser.getAvatar_url()).resize(140,140).into(mProfileImageView);
 
                             if (!currentUser.getLocation().equals("null")) {
                                 mLocationTextView.setText(currentUser.getLocation());

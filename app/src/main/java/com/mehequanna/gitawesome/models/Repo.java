@@ -4,14 +4,14 @@ import org.parceler.Parcel;
 
 @Parcel
 public class Repo {
-    private String name;
-    private String description;
-    private String avatar;
-    private String website;
-    private String stargazers;
-    private String createdAt;
-    private String updatedAt;
-    private String pushId;
+    String name;
+    String description;
+    String avatar;
+    String website;
+    String stargazers;
+    String createdAt;
+    String updatedAt;
+    String pushId;
 
     public Repo() {}
 

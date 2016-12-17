@@ -17,4 +17,7 @@ public class Constants {
     public static final String PREFERENCES_USER_LANGUAGE_KEY = "userLanguage";
     public static final String PREFERENCES_USER_USERNAME_KEY = "userLanguage";
     public static final String PREFERENCES_USER_ZIP_KEY = "userZip";
+
+    public static final String PREFERENCES_OVERLAY = "noOverlay";
+
 }
