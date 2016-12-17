@@ -12,7 +12,6 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -131,7 +130,6 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
                 if (user != null) {
                     String lowerUsername = user.getDisplayName().substring(1);
                     mUsername = user.getDisplayName().substring(0, 1).toUpperCase() + lowerUsername;
-                    Log.d("Firebase Username", mUsername);
 
                     getSupportActionBar().setTitle(mUsername + " is Awesome!");
 
@@ -313,7 +311,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "User profile updated.");
+                            Toast.makeText(UserActivity.this, "User profile updated.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
