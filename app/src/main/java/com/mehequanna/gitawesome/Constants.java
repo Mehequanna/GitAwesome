@@ -6,7 +6,6 @@ public class Constants {
     public static final String GIT_LANGUAGE_BASE_URL = "https://api.github.com/search/repositories";
     public static final String Q_QUERY_PARAMETER = "q";
     public static final String GIT_API_QUERY = "appid";
-    public static final String GIT_REPOS = "/repos";
     public static final String SORT_QUERY_PARAMETER = "sort";
     public static final String ORDER_QUERY_PARAMETER = "order";
 
