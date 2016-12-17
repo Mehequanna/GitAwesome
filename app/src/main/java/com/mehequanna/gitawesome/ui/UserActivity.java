@@ -58,12 +58,9 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.followersTextView) TextView mFollowersTextView;
 
     //Search/Button Binds
-    @Bind(R.id.zipEditText) EditText mZipEditText;
     @Bind(R.id.languageEditText) EditText mLanguageEditText;
     @Bind(R.id.searchGitButton) Button mSearchGitButton;
-    @Bind(R.id.searchMeetupButton) Button mSearchMeetupButton;
     @Bind(R.id.savedGithubButton) Button mSavedGithubButton;
-    @Bind(R.id.savedMeetupsButton) Button mSavedMeetupsButton;
 
     //Overlay Binds
     @Bind(R.id.overlayCheckbox) CheckBox mOverlayCheckbox;
@@ -82,7 +79,6 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
 
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
-    private String mUserZip;
     private String mUsername;
 
     Context context;
@@ -178,9 +174,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         mProfileImageView.setOnTouchListener(this);
 
         mSearchGitButton.setOnClickListener(this);
-        mSearchMeetupButton.setOnClickListener(this);
         mSavedGithubButton.setOnClickListener(this);
-        mSavedMeetupsButton.setOnClickListener(this);
         mOverlayCheckbox.setOnClickListener(this);
     }
 
@@ -210,10 +204,6 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
 
             if (!(TextUtils.isEmpty(mLanguageEditText.getText().toString().trim()))) {
 
-                if (!(TextUtils.isEmpty(mZipEditText.getText().toString().trim()))) {
-                    Toast.makeText(UserActivity.this, "No zip needed for git searches.", Toast.LENGTH_SHORT).show();
-                }
-
                 String language = mLanguageEditText.getText().toString().trim();
 
                 if(!(language).equals("")) {
@@ -230,13 +220,6 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         }
 
-        if (v == mSavedMeetupsButton) {
-            Toast.makeText(UserActivity.this, "Saved Meetup Function Coming Soon!", Toast.LENGTH_LONG).show();
-        }
-
-        if (v == mSearchMeetupButton) {
-            Toast.makeText(UserActivity.this, "Search Meetup Function Coming Soon!", Toast.LENGTH_LONG).show();
-        }
         if (v == mOverlayCheckbox) {
             final CheckBox checkBox = (CheckBox) findViewById(R.id.overlayCheckbox);
             if (checkBox.isChecked()) {

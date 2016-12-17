@@ -20,16 +20,12 @@ import butterknife.ButterKnife;
 public class LandingActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.loginButton) Button mLoginButton;
     @Bind(R.id.searchGitButton) Button mSearchGitButton;
-    @Bind(R.id.searchMeetupButton) Button mSearchMeetupButton;
     @Bind(R.id.aboutButton) Button mAboutButton;
     @Bind(R.id.languageEditText) EditText mLanguageEditText;
-    @Bind(R.id.zipEditText) EditText mZipEditText;
 
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
-    private String mUserZip;
     private String mUsername;
-    private String mNonUserZip;
     private String mNonUserLanguage;
     private String mUserLanguage;
     private String mUserOverlay;
@@ -45,28 +41,17 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
         mEditor = mSharedPreferences.edit();
 
         mLoginButton.setOnClickListener(this);
-        mSearchMeetupButton.setOnClickListener(this);
         mSearchGitButton.setOnClickListener(this);
         mAboutButton.setOnClickListener(this);
 
         // Presets Shared Preferences to avoid null pointer exceptions
         mUsername = mSharedPreferences.getString(Constants.PREFERENCES_USER_USERNAME_KEY, null);
-        mUserZip = mSharedPreferences.getString(Constants.PREFERENCES_USER_ZIP_KEY, null);
-        mNonUserZip = mSharedPreferences.getString(Constants.PREFERENCES_NONUSER_ZIP_KEY, null);
         mNonUserLanguage = mSharedPreferences.getString(Constants.PREFERENCES_NONUSER_LANGUAGE_KEY, null);
         mUserLanguage = mSharedPreferences.getString(Constants.PREFERENCES_USER_LANGUAGE_KEY, null);
         mUserOverlay = mSharedPreferences.getString(Constants.PREFERENCES_OVERLAY, null);
 
         if (mUserOverlay == null) {
             addOverlayToSharedPreferences("false");
-        }
-
-        if (mNonUserZip == null) {
-            addZipToSharedPreferences("97201");
-        }
-
-        if (mUserZip == null) {
-            addUserZipToSharedPreferences("97201");
         }
 
         if (mUsername == null) {
@@ -90,10 +75,6 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
             startActivity(intent);
         }
 
-        if (v == mSearchMeetupButton) {
-            Toast.makeText(LandingActivity.this, "Meetup Search Function Coming Soon!", Toast.LENGTH_LONG).show();
-        }
-
         if (v == mSearchGitButton) {
             if (TextUtils.isEmpty(mLanguageEditText.getText().toString().trim())) {
                 Toast.makeText(LandingActivity.this, "Using previously searched language.", Toast.LENGTH_SHORT).show();
@@ -103,10 +84,6 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
             }
 
             if (!(TextUtils.isEmpty(mLanguageEditText.getText().toString().trim()))) {
-
-                if (!(TextUtils.isEmpty(mZipEditText.getText().toString().trim()))) {
-                    Toast.makeText(LandingActivity.this, "No zip needed for git searches.", Toast.LENGTH_SHORT).show();
-                }
 
                 String language = mLanguageEditText.getText().toString().trim();
 
@@ -131,14 +108,6 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
 
     private void addUserLanguageToSharedPreferences(String language) {
         mEditor.putString(Constants.PREFERENCES_USER_LANGUAGE_KEY, language).apply();
-    }
-
-    private void addZipToSharedPreferences(String zip) {
-        mEditor.putString(Constants.PREFERENCES_NONUSER_ZIP_KEY, zip).apply();
-    }
-
-    private void addUserZipToSharedPreferences(String zip) {
-        mEditor.putString(Constants.PREFERENCES_USER_ZIP_KEY, zip).apply();
     }
 
     private void addUsernameToSharedPreferences(String username) {
