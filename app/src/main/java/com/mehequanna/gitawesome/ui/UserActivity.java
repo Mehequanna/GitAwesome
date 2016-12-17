@@ -196,6 +196,8 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
             if (TextUtils.isEmpty(mLanguageEditText.getText().toString().trim())) {
                 Toast.makeText(UserActivity.this, "Using previously searched language.", Toast.LENGTH_SHORT).show();
 
+                mLanguageEditText.setText("");
+
                 Intent intent = new Intent(UserActivity.this, GitsActivity.class);
                 startActivity(intent);
             }
@@ -207,6 +209,8 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
                 if(!(language).equals("")) {
                     addLanguageToSharedPreferences(language);
                 }
+
+                mLanguageEditText.setText("");
 
                 Intent intent = new Intent(UserActivity.this, GitsActivity.class);
                 startActivity(intent);
@@ -288,7 +292,22 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
             logout();
             return true;
         }
+        if (id == R.id.action_help) {
+            helpOverlay();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void helpOverlay() {
+        mOverlayTextView.setVisibility(View.VISIBLE);
+        mOverlayCheckbox.setVisibility(View.VISIBLE);
+        mOverlayDismissTextView.setVisibility(View.VISIBLE);
+        mOverlayMoreImageView.setVisibility(View.VISIBLE);
+        mOverlayMoreTextView.setVisibility(View.VISIBLE);
+        mOverlayPictureTextView.setVisibility(View.VISIBLE);
+        mOverlaySearchImageView.setVisibility(View.VISIBLE);
+        mOverlaySearchTextView.setVisibility(View.VISIBLE);
     }
 
     private void logout() {
