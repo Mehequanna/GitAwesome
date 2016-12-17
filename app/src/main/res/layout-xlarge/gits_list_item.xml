@@ -5,8 +5,8 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:layout_width="130dp"
-        android:layout_height="100dp"
+        android:layout_width="180dp"
+        android:layout_height="150dp"
         android:id="@+id/reposImageView"
         android:scaleType="centerCrop"
         android:layout_gravity="center"
@@ -17,13 +17,13 @@
         android:layout_width="match_parent"
         android:background="#ffffff"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:padding="20dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/repoNameTextView"
-            android:textSize="20sp"
+            android:textSize="35sp"
             android:textStyle="bold"
             android:text="Repo Name"
             android:textColor="@color/colorPrimary"/>
@@ -32,6 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Description"
+            android:textSize="25sp"
             android:id="@+id/repoDescriptionTextView"
             android:layout_below="@+id/repoNameTextView"
             android:textStyle="italic"/>
@@ -40,6 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Created"
+            android:textSize="20sp"
             android:id="@+id/repoCreatedTextView"
             android:layout_below="@+id/repoDescriptionTextView"
             android:textStyle="italic"/>
@@ -52,6 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Stars"
+                android:textSize="20sp"
                 android:id="@+id/repoStarsTextView"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
