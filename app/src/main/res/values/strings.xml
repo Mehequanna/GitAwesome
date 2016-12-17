@@ -52,4 +52,5 @@
     <string name="overlay_profile_image">Fling your Profile picture to go to your profile on github.</string>
     <string name="overlay_dismiss">Double tap to dismiss this message.</string>
     <string name="overlay_checkbox">Check if you don’t want to see this help again.</string>
+    <string name="github_avatar">Github Avatar</string>
 </resources>
