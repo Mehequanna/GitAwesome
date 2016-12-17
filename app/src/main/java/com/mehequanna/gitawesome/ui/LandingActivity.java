@@ -79,6 +79,8 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
             if (TextUtils.isEmpty(mLanguageEditText.getText().toString().trim())) {
                 Toast.makeText(LandingActivity.this, "Using previously searched language.", Toast.LENGTH_SHORT).show();
 
+                mLanguageEditText.setText("");
+
                 Intent intent = new Intent(LandingActivity.this, GitsActivity.class);
                 startActivity(intent);
             }
@@ -90,6 +92,8 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
                 if(!(language).equals("")) {
                     addLanguageToSharedPreferences(language);
                 }
+
+                mLanguageEditText.setText("");
 
                 Intent intent = new Intent(LandingActivity.this, GitsActivity.class);
                 startActivity(intent);

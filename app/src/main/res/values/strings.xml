@@ -53,4 +53,5 @@
     <string name="overlay_dismiss">Double tap to dismiss this message.</string>
     <string name="overlay_checkbox">Check if you don’t want to see this help again.</string>
     <string name="github_avatar">Github Avatar</string>
+    <string name="help">Help</string>
 </resources>
