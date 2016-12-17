@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,7 +66,11 @@ public class GitsDetailFragment extends Fragment implements View.OnClickListener
         String newUpdated = TextUtils.substring(mRepo.getUpdatedAt(), 0, 10);
 
         mGitsNameTextView.setText(mRepo.getName());
-        mDescriptionTextView.setText(mRepo.getDescription());
+
+        if (!mRepo.getDescription().equals("null")) {
+            mDescriptionTextView.setText(mRepo.getDescription());
+        }
+
         mCreatedTextView.setText(newCreated);
         mUpdatedTextView.setText(newUpdated);
         mStargazersTextView.setText(newStargazers);
