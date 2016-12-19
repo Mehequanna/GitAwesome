@@ -3,6 +3,7 @@ package com.mehequanna.gitawesome.ui;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.mehequanna.gitawesome.R;
 import com.mehequanna.gitawesome.adapters.RepoPagerAdapter;
@@ -27,6 +28,7 @@ public class GitsDetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mRepos = Parcels.unwrap(getIntent().getParcelableExtra("repos"));
+        Log.d("log", "onCreate: " + mRepos.get(0).getDescription());
         int startPosition = getIntent().getIntExtra("position", 0);
 
         adapterViewPager = new RepoPagerAdapter(getSupportFragmentManager(), mRepos);
