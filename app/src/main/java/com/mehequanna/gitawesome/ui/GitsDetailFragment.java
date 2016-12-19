@@ -95,11 +95,21 @@ public class GitsDetailFragment extends Fragment implements View.OnClickListener
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
             if (user != null) {
+                String uid = user.getUid();
+
                 DatabaseReference repoRef = FirebaseDatabase
                         .getInstance()
-                        .getReference(Constants.FIREBASE_CHILD_REPOS);
+                        .getReference(Constants.FIREBASE_CHILD_REPOS)
+                        .child(uid);
 
-                repoRef.push().setValue(mRepo);
+                DatabaseReference pushRef = repoRef.push();
+                String pushId = pushRef.getKey();
+                mRepo.setPushId(pushId);
+                pushRef.setValue(mRepo);
+
+//                repoRef.push().setValue(mRepo);
+
+
 
                 Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
             } else if (user == null) {
